@@ -1,6 +1,9 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import React, { useState, useEffect } from "react";
+import Link from 'next/link';
+import Image from 'next/image';
+
 
 export default function Home() {
   const [contentKey, setContentKey] = useState("");
@@ -119,6 +122,9 @@ export default function Home() {
       }}
     >
       <div className="bg-black bg-opacity-50 min-h-screen p-10">
+        <Header />
+
+
         <div className="flex flex-col items-center">
           <div className="mt-10">
             <Countdown />
@@ -129,7 +135,7 @@ export default function Home() {
             className="w-60 h-auto mx-auto mb-4"
           />
           <h1
-            className="text-8xl font-bold mb-8 font-display text-zinc-800"
+            className="text-8xl font-bold mb-8 font-display text-stone-300"
             style={{
               textShadow:
                 "2px 2px 0px #eb452b, 4px 4px 0px #efa032, 6px 6px 0px #46b59b, 8px 8px 0px #017e7f, 10px 10px 0px #052939",
@@ -138,12 +144,21 @@ export default function Home() {
             Bass Billionaires
           </h1>
 
-          <hr className="border-t-4 border-yellow-700 w-1/2 mx-auto my-4" />
-          <h2 className="text-4xl mb-4 font-extralight font-ballet text-yellow-500 tracking-widest">
+          <hr style={{
+            border: 'none',
+            height: '1px',
+            background: 'linear-gradient(to right, transparent, #fbbf24, transparent)',
+            width: '50%',
+            margin: '18px auto'
+          }} />          <h2 className="text-4xl mb-4 font-extralight font-ballet text-yellow-500 tracking-widest">
             Elite Opulence
           </h2>
-          <hr className="border-t-4 border-yellow-700 w-1/2 mx-auto my-0" />
-        </div>
+          <hr style={{
+            border: 'none',
+            height: '1px',
+            background: 'linear-gradient(to right, transparent, #fbbf24, transparent)',
+            width: '50%',
+          }} />        </div>
 
         <div className="mt-6 flex items-center justify-center">
           <h2
@@ -155,13 +170,15 @@ export default function Home() {
         </div>
 
         <div className="mt-6 flex items-center justify-center">
-          <Button
-            onClick={() => handleButtonClick("ticketInfo")}
-            style={{ fontSize: "40px" }}
-            className="relative z-0 h-12 w-auto px-8 rounded-full font-poiret border border-yellow-800 text-yellow-500 bg-transparent transition-all duration-300 hover:bg-amber-500 hover:text-neutral-50"
-          >
-            Purchase Ticket
-          </Button>
+          <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+            <Button
+              onClick={() => handleButtonClick("ticketInfo")}
+              style={{ fontSize: "40px" }}
+              className="relative z-0 h-12 w-auto px-8 rounded-full font-poiret border border-yellow-800 text-yellow-500 bg-transparent transition-all duration-300 hover:bg-amber-700 hover:text-neutral-50"
+            >
+              Purchase Ticket
+            </Button>
+          </a>
         </div>
 
         <div className="mt-6 flex justify-center space-x-4">
@@ -193,11 +210,12 @@ export default function Home() {
         </div>
 
         <footer className="mt-10 text-center text-sm text-yellow-500 bg-black bg-opacity-75 p-4">
-          <p>&copy; 2025 Ba$$ Billionaires. All rights reserved.</p>
+          <p>&copy; 2025 Ba$$ Billionaires. WTF. All rights reserved.</p>
         </footer>
       </div>
     </div>
   );
+
 }
 
 function Countdown() {
@@ -243,4 +261,18 @@ function Countdown() {
       </h2>
     </div>
   );
+
+
+
+
 }
+
+const Header = () => {
+  return (
+    <header>
+      {/* <Link href="/wtf" passHref>
+        <Image src="/wtfLogo.png" alt="Hosts" width={100} height={100} />
+      </Link> */}
+    </header>
+  );
+};
