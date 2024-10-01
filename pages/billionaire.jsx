@@ -1,7 +1,8 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import React, { useState, useEffect } from "react";
-
+import '../app/globals.css';
+import Head from 'next/head';
 
 export default function Home() {
   const [contentKey, setContentKey] = useState("");
@@ -107,120 +108,125 @@ export default function Home() {
   };
 
   return (
-    <div
-      className="min-h-screen bg-cover bg-center text-white font-body"
-      style={{
-        backgroundImage: 'url("/cash.png")',
-        backgroundBlendMode: "overlay",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-        minHeight: "100vh",
-      }}
-    >
-      <div className="bg-black bg-opacity-50 min-h-screen p-10">
-        <Header />
+    <>
+      <Head>
+        <link rel="icon" href="/wtffav.png.png" type="image/png" />
+      </Head>
+      <div
+        className="min-h-screen bg-cover bg-center text-white font-body"
+        style={{
+          backgroundImage: 'url("/cash.png")',
+          backgroundBlendMode: "overlay",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundAttachment: "fixed",
+          minHeight: "100vh",
+        }}
+      >
+        <div className="bg-black bg-opacity-50 min-h-screen p-10">
+          <Header />
 
 
-        <div className="flex flex-col items-center">
-          <div className="mt-10">
-            <Countdown />
+          <div className="flex flex-col items-center">
+            <div className="mt-10">
+              <Countdown />
+            </div>
+            <img
+              src="/crest.png"
+              alt="Ba$$ Billionaires Logo"
+              className="w-60 h-auto mx-auto mb-4"
+            />
+            <h1
+              className="text-8xl font-bold mb-8 font-display text-stone-300"
+              style={{
+                textShadow:
+                  "2px 2px 0px #eb452b, 4px 4px 0px #efa032, 6px 6px 0px #46b59b, 8px 8px 0px #017e7f, 10px 10px 0px #052939",
+              }}
+            >
+              Bass Billionaires
+            </h1>
+
+            <hr style={{
+              border: 'none',
+              height: '1px',
+              background: 'linear-gradient(to right, transparent, #fbbf24, transparent)',
+              width: '50%',
+              margin: '18px auto'
+            }} />          <h2 className="text-4xl mb-4 font-extralight font-ballet text-yellow-500 tracking-widest">
+              Elite Opulence
+            </h2>
+            <hr style={{
+              border: 'none',
+              height: '1px',
+              background: 'linear-gradient(to right, transparent, #fbbf24, transparent)',
+              width: '50%',
+            }} />        </div>
+
+          <div className="mt-6 flex items-center justify-center">
+            <h2
+              style={{ fontSize: "40px" }}
+              className="font-poiret text-2xl mb-2 text-yellow-500"
+            >
+              Thursday 6th March 5pm - Monday 10th March 10am
+            </h2>
           </div>
-          <img
-            src="/crest.png"
-            alt="Ba$$ Billionaires Logo"
-            className="w-60 h-auto mx-auto mb-4"
-          />
-          <h1
-            className="text-8xl font-bold mb-8 font-display text-stone-300"
-            style={{
-              textShadow:
-                "2px 2px 0px #eb452b, 4px 4px 0px #efa032, 6px 6px 0px #46b59b, 8px 8px 0px #017e7f, 10px 10px 0px #052939",
-            }}
-          >
-            Bass Billionaires
-          </h1>
 
-          <hr style={{
-            border: 'none',
-            height: '1px',
-            background: 'linear-gradient(to right, transparent, #fbbf24, transparent)',
-            width: '50%',
-            margin: '18px auto'
-          }} />          <h2 className="text-4xl mb-4 font-extralight font-ballet text-yellow-500 tracking-widest">
-            Elite Opulence
-          </h2>
-          <hr style={{
-            border: 'none',
-            height: '1px',
-            background: 'linear-gradient(to right, transparent, #fbbf24, transparent)',
-            width: '50%',
-          }} />        </div>
+          <div className="mt-6 flex items-center justify-center">
+            <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+              <Button
+                onClick={() => handleButtonClick("ticketInfo")}
+                style={{ fontSize: "40px" }}
+                className="relative z-0 h-12 w-auto px-8 rounded-full font-poiret border border-yellow-800 text-yellow-500 bg-transparent transition-all duration-300 hover:bg-amber-700 hover:text-neutral-50"
+              >
+                Purchase Ticket
+              </Button>
+            </a>
+          </div>
 
-        <div className="mt-6 flex items-center justify-center">
-          <h2
-            style={{ fontSize: "40px" }}
-            className="font-poiret text-2xl mb-2 text-yellow-500"
-          >
-            Thursday 6th March 5pm - Monday 10th March 10am
-          </h2>
-        </div>
-
-        <div className="mt-6 flex items-center justify-center">
-          <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
-            <Button
+          <div className="mt-6 flex justify-center space-x-4">
+            <button
+              onClick={() => handleButtonClick("sneakPeak")}
+              style={{ fontSize: "40px" }}
+              className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100"
+            >
+              About
+            </button>
+            <button
               onClick={() => handleButtonClick("ticketInfo")}
               style={{ fontSize: "40px" }}
-              className="relative z-0 h-12 w-auto px-8 rounded-full font-poiret border border-yellow-800 text-yellow-500 bg-transparent transition-all duration-300 hover:bg-amber-700 hover:text-neutral-50"
+              className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100"
             >
-              Purchase Ticket
-            </Button>
-          </a>
-        </div>
-
-        <div className="mt-6 flex justify-center space-x-4">
-          <button
-            onClick={() => handleButtonClick("sneakPeak")}
-            style={{ fontSize: "40px" }}
-            className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100"
-          >
-            About
-          </button>
-          <button
-            onClick={() => handleButtonClick("ticketInfo")}
-            style={{ fontSize: "40px" }}
-            className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100"
-          >
-            Ticket Info
-          </button>
-          <button
-            onClick={() => handleButtonClick("location")}
-            style={{ fontSize: "40px" }}
-            className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100"
-          >
-            Location
-          </button>
-          <button
-            onClick={() => handleButtonClick("merch")}
-            style={{ fontSize: "40px" }}
-            className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100"
-          >
-            Merch
-          </button>
-        </div>
-
-        {contentKey ? (
-          <div className="text-content mx-auto max-w-prose text-left space-y-4 mt-6 bg-black bg-opacity-60 p-6 rounded-md">
-            {contentMap[contentKey]}
+              Ticket Info
+            </button>
+            <button
+              onClick={() => handleButtonClick("location")}
+              style={{ fontSize: "40px" }}
+              className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100"
+            >
+              Location
+            </button>
+            <button
+              onClick={() => handleButtonClick("merch")}
+              style={{ fontSize: "40px" }}
+              className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100"
+            >
+              Merch
+            </button>
           </div>
-        ) : <></>}
 
-        <footer className="mt-10 text-center text-sm text-yellow-500 bg-black bg-opacity-75 p-4">
-          <p>&copy; 2025 Ba$$ Billionaires. WTF. All rights reserved.</p>
-        </footer>
+          {contentKey ? (
+            <div className="text-content mx-auto max-w-prose text-left space-y-4 mt-6 bg-black bg-opacity-60 p-6 rounded-md">
+              {contentMap[contentKey]}
+            </div>
+          ) : <></>}
+
+          <footer className="mt-10 text-center text-sm text-yellow-500 bg-black bg-opacity-75 p-4">
+            <p>&copy; 2025 Ba$$ Billionaires. WTF. All rights reserved.</p>
+          </footer>
+        </div>
       </div>
-    </div>
+    </>
   );
 
 }
