@@ -1,8 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import React, { useState, useEffect } from "react";
-import Link from 'next/link';
-import Image from 'next/image';
 
 
 export default function Home() {
@@ -202,6 +200,13 @@ export default function Home() {
             className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100"
           >
             Location
+          </button>
+          <button
+            onClick={() => handleButtonClick("merch")}
+            style={{ fontSize: "40px" }}
+            className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100"
+          >
+            Merch
           </button>
         </div>
 
