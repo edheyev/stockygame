@@ -22,16 +22,21 @@ const HomePage = () => {
                 backgroundColor: '#6a0dad'  // Ensures a uniform background color
             }}>
                 <div style={{
+                    display: 'flex',  // Apply flexbox to center content
+                    alignItems: 'center',  // Center vertically in the flex container
+                    justifyContent: 'center',  // Center horizontally in the flex container
                     width: '100%',  // Full width
-                    height: '50%',  // Half of the viewport height for the logo
+                    height: '50vh',  // Half of the viewport height for the logo
                     position: 'relative',  // Relative for positioning the Image
                     overflow: 'hidden'
                 }}>
                     <Image
                         src="/wtfbasic.png"
                         alt="Logo"
-                        layout="fill"
-                        objectFit="contain"  // Ensures the logo is fully visible
+                        height={0}
+                        width={0}
+                        style={{ width: '500px', height: "auto" }}
+                        sizes="100vw"
                         priority
                     />
                 </div>
@@ -42,10 +47,10 @@ const HomePage = () => {
                     maxWidth: '600px',  // Maximum width of the text container
                 }}>
                     <h1>WTF?</h1>
-                    <p>A former lion tamer, Adele ran away from the circus to join the foreign legion. Her file states that she didn't last long and was court martialled for
+                    <p>A former lion tamer, Adele ran away from the circus to join the foreign legion. Her file states that she didn&apos;t last long and was court martialled for
                         an event referred to as "the incident". </p>
                     <br />
-                    <p>No one knows where Emily came from. She can't speak any known language and communicates mostly through gestures. She makes a mean cup of tea.</p>
+                    <p>No one knows where Emily came from. She can&apos;t speak any known language and communicates mostly through gestures. She makes a mean cup of tea.</p>
                     <br />
                     <p>Together they are WTF Productions and throw parties and stuff.</p>
                 </div>
@@ -62,7 +67,7 @@ const HomePage = () => {
                         Bass Billionaires
                     </p>
                 </Link>
-            </div>
+            </div >
         </>
 
     );

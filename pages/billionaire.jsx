@@ -171,7 +171,7 @@ export default function Home() {
               Thursday 6th March 5pm - Monday 10th March 10am
             </h2>
           </div>
-
+          {/* 
           <div className="mt-6 flex items-center justify-center">
             <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
               <Button
@@ -182,7 +182,7 @@ export default function Home() {
                 Purchase Ticket
               </Button>
             </a>
-          </div>
+          </div> */}
 
           <div className="mt-6 flex justify-center space-x-4">
             <button
@@ -212,6 +212,13 @@ export default function Home() {
               className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100"
             >
               Merch
+            </button>
+            <button
+              onClick={() => handleButtonClick("merch")}
+              style={{ fontSize: "40px" }}
+              className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100"
+            >
+              FAQ
             </button>
           </div>
 
