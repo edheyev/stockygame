@@ -210,9 +210,11 @@ export default function Home() {
           </button>
         </div>
 
-        <div className="text-content mx-auto max-w-prose text-left space-y-4 mt-6 bg-black bg-opacity-60 p-6 rounded-md">
-          {contentMap[contentKey]}
-        </div>
+        {contentKey ? (
+          <div className="text-content mx-auto max-w-prose text-left space-y-4 mt-6 bg-black bg-opacity-60 p-6 rounded-md">
+            {contentMap[contentKey]}
+          </div>
+        ) : <></>}
 
         <footer className="mt-10 text-center text-sm text-yellow-500 bg-black bg-opacity-75 p-4">
           <p>&copy; 2025 Ba$$ Billionaires. WTF. All rights reserved.</p>
