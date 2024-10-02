@@ -52,13 +52,14 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["Abril Fatface", "sans-serif"], // Add Ballet for display (titles)
+        display: ["Abril Fatface", "serif"], // Add Ballet for display (titles)
         body: ["Roboto", "sans-serif"], // Example body font
         josefin: ["Josefin Sans", "sans-serif"], // For headings
         dede: ["Mr De Haviland", "cursive"],
         poiret: ["Poiret One", "sans-serif"],
         julius: ["Julius Sans One", "sans-serif"],
         ballet: ["Ballet", "cursive"],
+        beng: ['bengy', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",

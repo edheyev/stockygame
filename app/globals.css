@@ -4,7 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ballet:opsz@16..72&family=Julius+Sans+One&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -34,6 +34,15 @@
     box-sizing: border-box;
     /* Ensures padding and border are included in the element's total width and height */
   }
+}
+
+@font-face {
+  font-family: 'bengy';
+  src: url('/beng/1.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  /* Enhances text visibility while font is loading */
 }
 
 @layer utilities {
@@ -91,4 +100,6 @@
       box-shadow: 0 0 30px 10px rgba(255, 255, 0, 1);
     }
   }
+
+
 }
