@@ -72,7 +72,6 @@ const MerchPage = () => {
                             <p className="font-dede" style={{ paddingRight: '20px' }}>{item.price}</p>
                             <a href="https://www.youtube.com/watch?v=H7zjr0QYzu0" target="_blank" rel="noopener noreferrer">
                                 <Button
-                                    onClick={() => handleButtonClick("ticketInfo")}
                                     className=" rounded font-dede border border-yellow-800 text-yellow-500 bg-transparent transition-all duration-300 hover:bg-red-900 hover:text-neutral-50 text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl"
                                 >
                                     Buy now

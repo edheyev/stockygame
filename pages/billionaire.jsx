@@ -5,6 +5,7 @@ import '../app/globals.css';
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
+import PasswordProtect from '../components/PasswordProtect';
 
 
 export default function Home() {
@@ -102,140 +103,141 @@ export default function Home() {
   };
 
   return (
-    <>
-      <Head>
-        <link rel="icon" href="/wtffav.png.png" type="image/png" />
-      </Head>
-      <div
-        className="min-h-screen bg-cover bg-center text-white font-body"
-        style={{
-          backgroundImage: 'url("/cash.png")',
-          backgroundBlendMode: "overlay",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
-          minHeight: "100vh",
-        }}
-      >
-        <div className="bg-black bg-opacity-50 min-h-screen p-10">
-          <Header />
+    <PasswordProtect>
+      <>
+        <Head>
+          <link rel="icon" href="/wtffav.png.png" type="image/png" />
+        </Head>
+        <div
+          className="min-h-screen bg-cover bg-center text-white font-body"
+          style={{
+            backgroundImage: 'url("/cash.png")',
+            backgroundBlendMode: "overlay",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundAttachment: "fixed",
+            minHeight: "100vh",
+          }}
+        >
+          <div className="bg-black bg-opacity-50 min-h-screen p-10">
+            <Header />
 
 
-          <div className="flex flex-col items-center">
-            <div className="mt-10 ">
-              <Countdown />
-            </div>
-            <div className="mx-auto mb-4" style={{ width: '240px', height: 'auto' }}> {/* Adjust the width here to match the desired width like w-60 in Tailwind */}
-              <Image
-                src="/crest.png"
-                alt="Ba$$ Billionaires Logo"
-                width={'1069'}  // Actual width of the image in pixels
-                height={'655'}  // Actual height of the image in pixels
-              />
-            </div>
-            <h1
-              className="text-6xl md:text-8xl font-bold mb-8 font-beng text-stone-300 text-center"
-              style={{
-                textShadow:
-                  "2px 2px 0px #eb452b, 4px 4px 0px #efa032, 6px 6px 0px #46b59b, 8px 8px 0px #017e7f, 10px 10px 0px #052939",
-              }}
-            >
-              Bass Billionaires
-            </h1>
-
-            <hr
-              style={{
-                border: 'none',
-                height: '1px',
-                background: 'linear-gradient(to right, transparent, #fbbf24, transparent)',
-                width: '80%',  // Adjust width for smaller screens
-                maxWidth: '500px',  // Max width for large screens
-                margin: '18px auto',
-              }}
-            />          <h2 className="text-4xl mb-4 font-extralight font-ballet text-yellow-500 tracking-widest">
-              Elite Opulence
-            </h2>
-            <hr
-              style={{
-                border: 'none',
-                height: '1px',
-                background: 'linear-gradient(to right, transparent, #fbbf24, transparent)',
-                width: '80%',  // Adjust width for smaller screens
-                maxWidth: '500px',  // Max width for large screens
-                margin: '18px auto',
-              }}
-            />       </div>
-
-          <div className="mt-6 flex items-center justify-center text-center">
-            <h2
-              style={{ fontSize: "40px" }}
-              className="font-poiret text-2xl mb-2 text-yellow-500 text-center;"
-            >
-              <strong>Thursday 6th March</strong> 5pm <br />to<br /> <strong>Monday 10th March</strong> 10am
-            </h2>
-          </div>
-
-          <div className="mt-6 flex items-center justify-center">
-            <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
-              <Button
-                onClick={() => handleButtonClick("ticketInfo")}
-                className="relative z-0 px-8 sm:px-10 md:px-14 lg:px-16 xl:px-20 h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 rounded-full font-poiret border border-yellow-800 text-yellow-500 bg-transparent transition-all duration-300 hover:bg-red-900 hover:text-neutral-50 text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl"
+            <div className="flex flex-col items-center">
+              <div className="mt-10 ">
+                <Countdown />
+              </div>
+              <div className="mx-auto mb-4" style={{ width: '240px', height: 'auto' }}> {/* Adjust the width here to match the desired width like w-60 in Tailwind */}
+                <Image
+                  src="/crest.png"
+                  alt="Ba$$ Billionaires Logo"
+                  width={'1069'}  // Actual width of the image in pixels
+                  height={'655'}  // Actual height of the image in pixels
+                />
+              </div>
+              <h1
+                className="text-6xl md:text-8xl font-bold mb-8 font-beng text-stone-300 text-center"
+                style={{
+                  textShadow:
+                    "2px 2px 0px #eb452b, 4px 4px 0px #efa032, 6px 6px 0px #46b59b, 8px 8px 0px #017e7f, 10px 10px 0px #052939",
+                }}
               >
-                Claim your place
-              </Button>
-            </a>
-          </div>
+                Bass Billionaires
+              </h1>
 
-          <div className="mt-6 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <button
-              onClick={() => handleButtonClick("sneakPeak")}
-              className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100 text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4 py-2"
-            >
-              WTF is this?
-            </button>
-            <button
-              onClick={() => handleButtonClick("ticketInfo")}
-              className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100 text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4 py-2"
-            >
-              Ticket Info
-            </button>
-            <button
-              onClick={() => handleButtonClick("location")}
-              className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100 text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4 py-2"
-            >
-              Location
-            </button>
+              <hr
+                style={{
+                  border: 'none',
+                  height: '1px',
+                  background: 'linear-gradient(to right, transparent, #fbbf24, transparent)',
+                  width: '80%',  // Adjust width for smaller screens
+                  maxWidth: '500px',  // Max width for large screens
+                  margin: '18px auto',
+                }}
+              />          <h2 className="text-4xl mb-4 font-extralight font-ballet text-yellow-500 tracking-widest">
+                Elite Opulence
+              </h2>
+              <hr
+                style={{
+                  border: 'none',
+                  height: '1px',
+                  background: 'linear-gradient(to right, transparent, #fbbf24, transparent)',
+                  width: '80%',  // Adjust width for smaller screens
+                  maxWidth: '500px',  // Max width for large screens
+                }}
+              />       </div>
 
-            <button
-              onClick={() => handleButtonClick("faq")}
-              className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100 text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4 py-2"
-            >
-              FAQ
-            </button>
-            <Link href="/merch" passHref>
+            <div className="mt-6 flex items-center justify-center text-center">
+              <h2
+                style={{ fontSize: "40px" }}
+                className="py-10	font-poiret text-2xl mb-2 text-yellow-500 text-center;"
+              >
+                <strong>Thursday 6th March</strong> 5pm <br />to <br /> <strong>Monday 10th March</strong> 10am
+              </h2>
+            </div>
+
+            <div className="mt-6 flex items-center justify-center">
+              <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+                <Button
+                  onClick={() => handleButtonClick("ticketInfo")}
+                  className="relative z-0 px-8 sm:px-10 md:px-14 lg:px-16 xl:px-20 h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 rounded-full font-poiret border border-yellow-800 text-yellow-500 bg-transparent transition-all duration-300 hover:bg-red-900 hover:text-neutral-50 text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl"
+                >
+                  Claim your place
+                </Button>
+              </a>
+            </div>
+
+            <div className="mt-6 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
               <button
-                onClick={() => handleButtonClick("merch")}
+                onClick={() => handleButtonClick("sneakPeak")}
                 className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100 text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4 py-2"
               >
-                Merch
+                WTF is this?
               </button>
-            </Link>
-          </div>
+              <button
+                onClick={() => handleButtonClick("ticketInfo")}
+                className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100 text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4 py-2"
+              >
+                Ticket Info
+              </button>
+              <button
+                onClick={() => handleButtonClick("location")}
+                className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100 text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4 py-2"
+              >
+                Location
+              </button>
 
-
-          {contentKey ? (
-            <div className="text-content mx-auto max-w-prose text-left space-y-4 mt-6 bg-black bg-opacity-60 p-6 rounded-md">
-              {contentMap[contentKey]}
+              <button
+                onClick={() => handleButtonClick("faq")}
+                className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100 text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4 py-2"
+              >
+                FAQ
+              </button>
+              <Link href="/merch" passHref>
+                <button
+                  onClick={() => handleButtonClick("merch")}
+                  className="bg-transparent font-poiret relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-full after:origin-bottom after:scale-x-0 after:bg-yellow-700 after:transition-transform after:duration-500 hover:after:origin-bottom hover:after:scale-x-100 text-xl sm:text-2xl md:text-3xl lg:text-4xl px-4 py-2"
+                >
+                  Merch
+                </button>
+              </Link>
             </div>
-          ) : <></>}
 
-          <footer className="mt-10 text-center text-sm text-yellow-500 bg-black bg-opacity-75 p-4">
-            <p>&copy; 2025 Ba$$ Billionaires. WTF. All rights reserved.</p>
-          </footer>
-        </div>
-      </div >
-    </>
+
+            {contentKey ? (
+              <div className="text-content mx-auto max-w-prose text-left space-y-4 mt-6 bg-black bg-opacity-60 p-6 rounded-md">
+                {contentMap[contentKey]}
+              </div>
+            ) : <></>}
+
+            <footer className="mt-10 text-center text-sm text-yellow-500 bg-black bg-opacity-75 p-4">
+              <p>&copy; 2025 Ba$$ Billionaires. WTF. All rights reserved.</p>
+            </footer>
+          </div>
+        </div >
+      </>
+    </PasswordProtect>
   );
 
 }
