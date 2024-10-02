@@ -70,6 +70,7 @@ const HomePage = () => {
                         borderRadius: '5px',  // Rounded corners
                         alignItems: "center",  // Centers children horizontally
                         justifyContent: "center",  // Centers children vertically
+                        marginBottom: '30px'
                     }}>
                         Bass Billionaires 2025
                     </p>

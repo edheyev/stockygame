@@ -5,8 +5,8 @@ import '../app/globals.css';
 import { Button } from "@/components/ui/button";
 
 const merchandiseItems = [
-    { id: 1, name: `Luxury Limo`, description: `Travel in style with a limo that has a pool and a helipad.`, price: "£1,000,000", imageUrl: "/limo.jpg", url: "https://www.youtube.com/watch?v=H7zjr0QYzu0" },
-    { id: 2, name: `The Yacht`, description: `Rule the waves with this gold-plated yacht that screams luxury.`, price: "£5,000,000", imageUrl: "/boat.jpg", url: "https://www.youtube.com/watch?v=H7zjr0QYzu0" },
+    { id: 1, name: `Luxury Limo`, description: `Travel in style with a limo that has a pool and a helipad.`, price: "£1,000,000", imageUrl: "/limo.jpg", url: "https://www.autotrader.co.uk/car-details/202409164095284?sort=relevance&advertising-location=at_cars&price-to=1000&year-to=1995&fromsra" },
+    { id: 2, name: `The Yacht`, description: `Rule the waves with this gold-plated yacht that screams luxury.`, price: "£5,000,000", imageUrl: "/boat.jpg", url: "https://www.rome2rio.com/s/Grimsby/Calais-Ferry-Port" },
     { id: 3, name: `Expensive Water`, description: `S-tier drinking experience.`, price: "£69,000", imageUrl: "/challice.jpg", url: "https://fine-liquids.com/en-gb/products/fillico-2-generation?srsltid=AfmBOor628KvEaft0WMv7o9sX1rUFCB3Jq9R4Pg8qyE33N9k_LRmsE83" },
     { id: 4, name: `Diamond Sausage`, description: `Swarovski himself shat this deluxe mega-turd. One of a kind.`, price: "£420,000", imageUrl: "/diamondsausage.webp", url: "https://www.youtube.com/watch?v=H7zjr0QYzu0" },
     { id: 5, name: `Certified Natural Jadeite Jade Decoration 'Fruity Gourds'`, description: `Isn't it obvious?`, price: "£243,865.19", imageUrl: "/fruitygourd.webp", url: "https://www.1stdibs.com/jewelry/objets-dart-vertu/figurines-sculptures/certified-natural-jadeite-jade-decoration-fruity-gourds-circa-1930s-prosperity/id-j_9376322/" },
