@@ -67,7 +67,7 @@ export default function Home() {
 
         <h2 style={{ fontSize: "20px", fontWeight: "bold" }}>Can I bring a plus 1?</h2>
 
-        <p>Each VIP is invited to book one other ticket as a plus 1. Your plus 1 will be connected to you. Please be mindful of who you consider to bring into this space. Help us make sure everyone at Bass Billionaires is the highest quality human, wealthy in spirit, with a rich personality, crystal moral compass, and heart of pure gold. If you’re not sure, ask us!</p>
+        <p>Each VIP is hand-selected, but we know the ruling class is all connected. If you are keen to expand our network, then VIPs may bring a plus 1. Your plus 1 will be connected to you forever. Please be mindful of who you consider to bring into this space. Help us make sure everyone at Bass Billionaires is the highest quality human, wealthy in spirit, with a rich personality, crystal moral compass, and heart of pure gold. If you’re not sure, ask us!</p>
 
         <h2 style={{ fontSize: "20px", fontWeight: "bold" }}>What does my ticket go towards?</h2>
         <p>Skimming all the cream off the top of our respective countries’ economies has really worked, and costs are skyrocketing. Not to space like us, but pretty damn high! We thought you might want to check out how your investment is dividended [for tax purposes]. On average, a shareholder’s return includes:</p>

@@ -12,7 +12,7 @@ const merchandiseItems = [
     { id: 5, name: `Certified Natural Jadeite Jade Decoration 'Fruity Gourds'`, description: `Isn't it obvious?`, price: "£243,865.19", imageUrl: "/fruitygourd.webp", url: "https://www.1stdibs.com/jewelry/objets-dart-vertu/figurines-sculptures/certified-natural-jadeite-jade-decoration-fruity-gourds-circa-1930s-prosperity/id-j_9376322/" },
     { id: 6, name: `Clone Army!`, description: `Select from our surprisingly large DNA pool and be ready for ANY eventuality ;).`, price: "£12,345,000,000", imageUrl: "/clones.jpg", url: "https://www.youtube.com/watch?v=H7zjr0QYzu0" },
     { id: 7, name: `Full Age Regression Therapy`, description: `Too old? Sign up to our exclusive re-juvi-vitination clinic (Do not apply if you have any of the following allergies: virgin blood, hair, spit, marmite)`, price: "£999,999,999", imageUrl: "/youth.jpg", url: "https://www.youtube.com/watch?v=H7zjr0QYzu0" },
-    { id: 8, name: `Ultra-exclusive, VIP Only, Expedition of the Year!`, description: `Join our team of actual experts and travel the deeps in a space no peasant can reach. See the wreck of the Titanic with your own eyes!`, price: "Price on Request", imageUrl: "/Titanic.jpg", url: "https://www.youtube.com/watch?v=H7zjr0QYzu0" },
+    { id: 8, name: `Ultra-exclusive, VIP Only, Expedition of the Year!`, description: `Join our team of actual experts and travel the deeps in a space no peasant can reach. See the wreck of the Titanic with your own eyes!`, price: "Price on Request", imageUrl: "/Titanic.jpg", url: " https://www.youtube.com/watch?v=oklPl95DC8c " },
 ];
 
 
