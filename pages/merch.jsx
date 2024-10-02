@@ -5,14 +5,15 @@ import '../app/globals.css';
 import { Button } from "@/components/ui/button";
 
 const merchandiseItems = [
-    { id: 1, name: "Luxury Limo", description: "Travel in style with a limo that has a pool and a helipad.", price: "£1,000,000", imageUrl: "/limo.jpg" },
-    { id: 2, name: "The Yacht", description: "Rule the waves with this gold-plated yacht that screams luxury.", price: "£5,000,000", imageUrl: "/boat.jpg" },
-    { id: 3, name: "Expensive Water", description: "S-tier drinking experience.", price: "£69,000", imageUrl: "/challice.jpg" },
-    { id: 4, name: "Diamond Sausage", description: "Swarovski himself shat this delux mega-turd. One of a kind.", price: "£420,000", imageUrl: "/diamondsausage.webp" },
-    { id: 5, name: "Certified Natural Jadeite Jade Decoration 'Fruity Gourds'", description: "Isn't it obvious?", price: "£243,865.19", imageUrl: "/fruitygourd.webp" },
-    { id: 6, name: "Clone army!", description: "Select from our surprising large DNA pool and be ready for ANY eventuality ;)", price: "£12345000,00,000", imageUrl: "/clones.jpg" },
-    { id: 7, name: "Utlra-exclusive, VIP only, Expedition of the year!", description: "Join our team of actual experts and travel the deeps in a space no peasant can reach. See the wreck of the Titanic with your own eyes!", price: "Price On Request", imageUrl: "/Titanic.jpg" },
+    { id: 1, name: `Luxury Limo`, description: `Travel in style with a limo that has a pool and a helipad.`, price: "£1,000,000", imageUrl: "/limo.jpg" },
+    { id: 2, name: `The Yacht`, description: `Rule the waves with this gold-plated yacht that screams luxury.`, price: "£5,000,000", imageUrl: "/boat.jpg" },
+    { id: 3, name: `Expensive Water`, description: `S-tier drinking experience.`, price: "£69,000", imageUrl: "/challice.jpg" },
+    { id: 4, name: `Diamond Sausage`, description: `Swarovski himself shat this deluxe mega-turd. One of a kind.`, price: "£420,000", imageUrl: "/diamondsausage.webp" },
+    { id: 5, name: `Certified Natural Jadeite Jade Decoration 'Fruity Gourds'`, description: `Isn't it obvious?`, price: "£243,865.19", imageUrl: "/fruitygourd.webp" },
+    { id: 6, name: `Clone Army!`, description: `Select from our surprisingly large DNA pool and be ready for ANY eventuality ;).`, price: "£12,345,000,000", imageUrl: "/clones.jpg" },
+    { id: 7, name: `Ultra-exclusive, VIP Only, Expedition of the Year!`, description: `Join our team of actual experts and travel the deeps in a space no peasant can reach. See the wreck of the Titanic with your own eyes!`, price: "Price on Request", imageUrl: "/Titanic.jpg" },
 ];
+
 
 const MerchPage = () => {
     return (

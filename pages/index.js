@@ -1,6 +1,7 @@
 import React from "react";
 import Link from 'next/link';
 import Image from 'next/image';
+
 import '../app/globals.css';
 import Head from 'next/head';
 const HomePage = () => {
@@ -48,7 +49,7 @@ const HomePage = () => {
                 }}>
                     <h1>WTF?</h1>
                     <p>A former lion tamer, Adele ran away from the circus to join the foreign legion. Her file states that she didn&apos;t last long and was court martialled for
-                        an event referred to as "the incident". </p>
+                        an event referred to as &quot;"the incident&quot;". </p>
                     <br />
                     <p>No one knows where Emily came from. She can&apos;t speak any known language and communicates mostly through gestures. She makes a mean cup of tea.</p>
                     <br />

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import '../app/globals.css';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 
 
 export default function Home() {
@@ -125,11 +126,14 @@ export default function Home() {
             <div className="mt-10 ">
               <Countdown />
             </div>
-            <img
-              src="/crest.png"
-              alt="Ba$$ Billionaires Logo"
-              className="w-60 h-auto mx-auto mb-4"
-            />
+            <div className="mx-auto mb-4" style={{ width: '240px', height: 'auto' }}> {/* Adjust the width here to match the desired width like w-60 in Tailwind */}
+              <Image
+                src="/crest.png"
+                alt="Ba$$ Billionaires Logo"
+                width={'1069'}  // Actual width of the image in pixels
+                height={'655'}  // Actual height of the image in pixels
+              />
+            </div>
             <h1
               className="text-6xl md:text-8xl font-bold mb-8 font-beng text-stone-300 text-center"
               style={{
