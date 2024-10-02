@@ -5,14 +5,16 @@ import '../app/globals.css';
 import { Button } from "@/components/ui/button";
 
 const merchandiseItems = [
-    { id: 1, name: `Luxury Limo`, description: `Travel in style with a limo that has a pool and a helipad.`, price: "£1,000,000", imageUrl: "/limo.jpg" },
-    { id: 2, name: `The Yacht`, description: `Rule the waves with this gold-plated yacht that screams luxury.`, price: "£5,000,000", imageUrl: "/boat.jpg" },
-    { id: 3, name: `Expensive Water`, description: `S-tier drinking experience.`, price: "£69,000", imageUrl: "/challice.jpg" },
-    { id: 4, name: `Diamond Sausage`, description: `Swarovski himself shat this deluxe mega-turd. One of a kind.`, price: "£420,000", imageUrl: "/diamondsausage.webp" },
-    { id: 5, name: `Certified Natural Jadeite Jade Decoration 'Fruity Gourds'`, description: `Isn't it obvious?`, price: "£243,865.19", imageUrl: "/fruitygourd.webp" },
-    { id: 6, name: `Clone Army!`, description: `Select from our surprisingly large DNA pool and be ready for ANY eventuality ;).`, price: "£12,345,000,000", imageUrl: "/clones.jpg" },
-    { id: 7, name: `Ultra-exclusive, VIP Only, Expedition of the Year!`, description: `Join our team of actual experts and travel the deeps in a space no peasant can reach. See the wreck of the Titanic with your own eyes!`, price: "Price on Request", imageUrl: "/Titanic.jpg" },
+    { id: 1, name: `Luxury Limo`, description: `Travel in style with a limo that has a pool and a helipad.`, price: "£1,000,000", imageUrl: "/limo.jpg", url: "https://www.youtube.com/watch?v=H7zjr0QYzu0" },
+    { id: 2, name: `The Yacht`, description: `Rule the waves with this gold-plated yacht that screams luxury.`, price: "£5,000,000", imageUrl: "/boat.jpg", url: "https://www.youtube.com/watch?v=H7zjr0QYzu0" },
+    { id: 3, name: `Expensive Water`, description: `S-tier drinking experience.`, price: "£69,000", imageUrl: "/challice.jpg", url: "https://fine-liquids.com/en-gb/products/fillico-2-generation?srsltid=AfmBOor628KvEaft0WMv7o9sX1rUFCB3Jq9R4Pg8qyE33N9k_LRmsE83" },
+    { id: 4, name: `Diamond Sausage`, description: `Swarovski himself shat this deluxe mega-turd. One of a kind.`, price: "£420,000", imageUrl: "/diamondsausage.webp", url: "https://www.youtube.com/watch?v=H7zjr0QYzu0" },
+    { id: 5, name: `Certified Natural Jadeite Jade Decoration 'Fruity Gourds'`, description: `Isn't it obvious?`, price: "£243,865.19", imageUrl: "/fruitygourd.webp", url: "https://www.1stdibs.com/jewelry/objets-dart-vertu/figurines-sculptures/certified-natural-jadeite-jade-decoration-fruity-gourds-circa-1930s-prosperity/id-j_9376322/" },
+    { id: 6, name: `Clone Army!`, description: `Select from our surprisingly large DNA pool and be ready for ANY eventuality ;).`, price: "£12,345,000,000", imageUrl: "/clones.jpg", url: "https://www.youtube.com/watch?v=H7zjr0QYzu0" },
+    { id: 7, name: `Full Age Regression Therapy`, description: `Too old? Sign up to our exclusive re-juvi-vitination clinic (Do not apply if you have any of the following allergies: virgin blood, hair, spit, marmite)`, price: "£999,999,999", imageUrl: "/youth.jpg", url: "https://www.youtube.com/watch?v=H7zjr0QYzu0" },
+    { id: 8, name: `Ultra-exclusive, VIP Only, Expedition of the Year!`, description: `Join our team of actual experts and travel the deeps in a space no peasant can reach. See the wreck of the Titanic with your own eyes!`, price: "Price on Request", imageUrl: "/Titanic.jpg", url: "https://www.youtube.com/watch?v=H7zjr0QYzu0" },
 ];
+
 
 
 const MerchPage = () => {
@@ -70,7 +72,7 @@ const MerchPage = () => {
                         <p className="text-2xl my-2 font-poiret">{item.description}</p>
                         <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: '10px' }}>
                             <p className="font-dede" style={{ paddingRight: '20px' }}>{item.price}</p>
-                            <a href="https://www.youtube.com/watch?v=H7zjr0QYzu0" target="_blank" rel="noopener noreferrer">
+                            <a href={item.url} target="_blank" rel="noopener noreferrer">
                                 <Button
                                     className=" rounded font-dede border border-yellow-800 text-yellow-500 bg-transparent transition-all duration-300 hover:bg-red-900 hover:text-neutral-50 text-2xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl"
                                 >

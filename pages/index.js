@@ -47,7 +47,8 @@ const HomePage = () => {
                     padding: '20px',  // Adds spacing around the text
                     maxWidth: '600px',  // Maximum width of the text container
                 }}>
-                    <h1>WTF?</h1>
+                    <h1>WTF PRODUCTIONS is an immersive experience production duo based in the United Kingdom.</h1>
+                    <br />
                     <p>{`A former 
   lion tamer, Adele ran away from the circus to join the foreign legion. Her file states that she didn't last long and was court martialled for
   an event referred to as "the incident".`}
@@ -56,7 +57,9 @@ const HomePage = () => {
                     <br />
                     <p>No one knows where Emily came from. She can&apos;t speak any known language and communicates mostly through gestures. She makes a mean cup of tea.</p>
                     <br />
-                    <p>Together they are WTF Productions and throw parties and stuff.</p>
+                    <p>Together they are WTF Productions.<br /><br />
+                        Want us to throw you a party? Contact <a href="mailto:adele.t.meyer@gmail.com">adele.t.meyer@gmail.com</a></p>
+
                 </div>
                 <Link href="/billionaire" passHref>
                     <p style={{
@@ -68,7 +71,7 @@ const HomePage = () => {
                         alignItems: "center",  // Centers children horizontally
                         justifyContent: "center",  // Centers children vertically
                     }}>
-                        Bass Billionaires
+                        Bass Billionaires 2025
                     </p>
                 </Link>
             </div >
