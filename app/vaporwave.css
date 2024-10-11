@@ -115,6 +115,108 @@ a {
             rgba(0, 0, 0, 0.1) 4px);
 }
 
+/* vaporwave.css */
+
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Press+Start+2P&family=VT323&display=swap');
+
+/* Base Styles */
+.dashboard-container {
+    /* Existing styles if any */
+}
+
+/* Header Row */
+.header-row {
+    /* Existing inline styles are already handling most styling */
+}
+
+/* Shark Container */
+.shark-container {
+    width: 150px;
+    /* Adjust based on your design needs */
+    height: 150px;
+    /* Adjust based on your design needs */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    /* Prevents shrinking */
+}
+
+/* Header Text */
+.dashboard-title {
+    /* Additional styles if needed */
+}
+
+/* Stockmatic Span */
+.stockmatic {
+    font-family: "Dela Gothic One", sans-serif;
+
+    /* Example font */
+    font-size: 5vw;
+    /* Match the base font size */
+    color: #00ffff;
+    /* Example color */
+}
+
+/* Pro Span */
+.pro {
+    font-family: 'vape', system;
+    /* Example pixel font */
+    font-size: 6vw;
+    /* Larger font size */
+    color: #ff00ff;
+    /* Example color */
+}
+
+/* Text Gradient */
+.text-gradient {
+    background: linear-gradient(90deg, #ff00ff, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Gothic Font */
+.gothic-font {
+    font-family: 'Dela Gothic One', sans-serif;
+}
+
+/* Pixel Font Class */
+.font-dede {
+    font-family: 'Press Start 2P', monospace;
+    /* Example pixel font */
+}
+
+/* Scanlines Effect */
+.scanlines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.1) 2px,
+            rgba(0, 0, 0, 0.1) 4px);
+}
+
+/* Static Noise Overlay */
+.static-noise::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url('/images/static-noise.png');
+    /* Ensure the path is correct */
+    opacity: 0.05;
+    mix-blend-mode: screen;
+}
+
 /* Static noise overlay */
 .static-noise::after {
     content: '';
@@ -137,7 +239,7 @@ a {
 }
 
 .text-gradient {
-    text-shadow: -.12625rem -.0625rem 0 #6BFFFF, .4625rem .325rem 0 #FF819E;
+    text-shadow: -.12625rem -.0625rem 0 #6BFFFF, .625rem .325rem 0 #FF819E;
 }
 
 .blink {

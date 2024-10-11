@@ -110,9 +110,9 @@ const Dashboard = () => {
               alignItems: "center", // Aligns the text vertically
             }}
           >
-            発金 StockMatic <i>pro</i>
+            発金 StockMatic <i style={{ fontFamily: "gothic" }}>pro</i>
           </h1>
-          <ShorkSpinAnimation /> {/* Shark animation on the right */}
+          {/* <ShorkSpinAnimation /> */}
         </div>
         {/* Rest of the Dashboard Components */}
         {/* Top Row: Animated Line Chart */}
