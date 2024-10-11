@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import "../app/globals.css";
+import "../app/vaporwave.css"; // Import the vaporwave styles
 
 const AnimatedLineChart = ({ cryptoData }) => {
   const chartRef = useRef(null);
@@ -40,18 +41,90 @@ const AnimatedLineChart = ({ cryptoData }) => {
     const container = d3.select(chartRef.current);
     const containerWidth = chartRef.current.offsetWidth;
     const containerHeight = chartRef.current.offsetHeight;
-    const margin = { top: 10, right: 100, bottom: 30, left: 40 };
+    const margin = { top: 20, right: 120, bottom: 50, left: 60 };
     const width = containerWidth - margin.left - margin.right;
     const height = containerHeight - margin.top - margin.bottom;
 
     container.select("svg").remove();
 
+    // Add background gradient and grid
     const svg = container
       .append("svg")
       .attr("width", containerWidth)
       .attr("height", containerHeight)
       .append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
+      .attr("transform", `translate(${margin.left},${margin.top})`)
+      .attr("class", "vaporwave-chart");
+
+    // Define the gradient for background
+    // Add SVG filter for glow effect
+    const defs = svg.append("defs");
+
+    const filter = defs
+      .append("filter")
+      .attr("id", "glow");
+
+    filter
+      .append("feGaussianBlur")
+      .attr("stdDeviation", "4")
+      .attr("result", "coloredBlur");
+
+    const feMerge = filter.append("feMerge");
+
+    feMerge.append("feMergeNode").attr("in", "coloredBlur");
+    feMerge.append("feMergeNode").attr("in", "SourceGraphic");
+
+    // Background gradient
+    defs
+      .append("linearGradient")
+      .attr("id", "bg-gradient")
+      .attr("gradientTransform", "rotate(90)")
+      .selectAll("stop")
+      .data([
+        { offset: "0%", color: "#8C1EFF" },
+        { offset: "100%", color: "#FF77E9" },
+      ])
+      .enter()
+      .append("stop")
+      .attr("offset", (d) => d.offset)
+      .attr("stop-color", (d) => d.color);
+
+    svg
+      .append("rect")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .attr("transform", `translate(${-margin.left},${-margin.top})`)
+      .style("fill", "url(#bg-gradient)");
+
+    // Retro grid lines
+    const gridSize = 20;
+
+    const gridLinesX = d3.range(0, width, gridSize);
+    const gridLinesY = d3.range(0, height, gridSize);
+
+    svg
+      .selectAll(".grid-line-x")
+      .data(gridLinesY)
+      .enter()
+      .append("line")
+      .attr("class", "grid-line")
+      .attr("x1", 0)
+      .attr("y1", (d) => d)
+      .attr("x2", width)
+      .attr("y2", (d) => d)
+      .style("stroke", "rgba(255, 255, 255, 0.5)");
+
+    svg
+      .selectAll(".grid-line-y")
+      .data(gridLinesX)
+      .enter()
+      .append("line")
+      .attr("class", "grid-line")
+      .attr("x1", (d) => d)
+      .attr("y1", 0)
+      .attr("x2", (d) => d)
+      .attr("y2", height)
+      .style("stroke", "rgba(255, 255, 255, 0.3)");
 
     // Set up scales
     const xScale = d3
@@ -71,9 +144,9 @@ const AnimatedLineChart = ({ cryptoData }) => {
       .line()
       .x((d) => xScale(d.time))
       .y((d) => yScale(d.value))
-      .curve(d3.curveMonotoneX);
+    // .curve(d3.curveMonotoneX);
 
-    const colors = d3.scaleOrdinal(d3.schemeCategory10);
+    const vaporwaveColors = ["#FF77E9", "#8C1EFF", "#00FFFF", "#FFB347"];
 
     // For each cryptocurrency, draw a line
     cryptoData.forEach((crypto, index) => {
@@ -86,20 +159,44 @@ const AnimatedLineChart = ({ cryptoData }) => {
         .append("path")
         .datum(cryptoLineData)
         .attr("fill", "none")
-        .attr("stroke", colors(index))
-        .attr("stroke-width", 2)
+        .attr("stroke", vaporwaveColors[index % vaporwaveColors.length])
+        .attr("stroke-width", 5)
+        .attr("class", "neon-line")
         .attr("d", line);
     });
 
     // Add axes
+    const xAxis = d3
+      .axisBottom(xScale)
+      .ticks(5)
+      .tickFormat(d3.timeFormat("%H:%M:%S"));
+
+    const yAxis = d3.axisLeft(yScale).ticks(5);
+
     svg
       .append("g")
       .attr("transform", `translate(0,${height})`)
-      .call(
-        d3.axisBottom(xScale).ticks(5).tickFormat(d3.timeFormat("%H:%M:%S"))
-      );
+      .call(xAxis)
+      .attr("class", "axis vaporwave-axis");
 
-    svg.append("g").call(d3.axisLeft(yScale).ticks(5));
+    svg.append("g").call(yAxis).attr("class", "axis vaporwave-axis");
+
+    // Add axes labels
+    svg
+      .append("text")
+      .attr("class", "axis-label vaporwave-axis")
+      .attr("transform", `translate(${width / 2}, ${height + 40})`)
+      .style("text-anchor", "middle")
+      .text("Time");
+
+    svg
+      .append("text")
+      .attr("class", "axis-label vaporwave-axis")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -50)
+      .attr("x", -height / 2)
+      .style("text-anchor", "middle")
+      .text("Value");
 
     // Add legend
     const legend = svg
@@ -107,24 +204,24 @@ const AnimatedLineChart = ({ cryptoData }) => {
       .data(cryptoData)
       .enter()
       .append("g")
-      .attr("class", "legend")
-      .attr("transform", (d, i) => `translate(0, ${i * 20})`);
+      .attr("class", "legend vaporwave-text")
+      .attr("transform", (d, i) => `translate(0, ${i * 25})`);
 
-    legend
-      .append("rect")
-      .attr("x", width + 10)
-      .attr("y", 0)
-      .attr("width", 18)
-      .attr("height", 18)
-      .style("fill", (d, i) => colors(i));
+    // legend
+    //   .append("rect")
+    //   .attr("x", width + 20)
+    //   .attr("y", 0)
+    //   .attr("width", 18)
+    //   .attr("height", 18)
+    //   .style("fill", (d, i) => vaporwaveColors[i % vaporwaveColors.length])
+    //   .attr("class", "neon-rect");
 
-    legend
-      .append("text")
-      .attr("x", width + 35)
-      .attr("y", 9)
-      .attr("dy", ".35em")
-      .style("fill", "#fff")
-      .text((d) => d.name);
+    // legend
+    //   .append("text")
+    //   .attr("x", width + 45)
+    //   .attr("y", 9)
+    //   .attr("dy", ".35em")
+    //   .text((d) => d.name);
   };
 
   if (!hasMounted) {
@@ -135,6 +232,7 @@ const AnimatedLineChart = ({ cryptoData }) => {
     <div
       ref={chartRef}
       style={{ width: "100%", height: "100%", position: "relative" }}
+      className="vaporwave-chart-container"
     ></div>
   );
 };

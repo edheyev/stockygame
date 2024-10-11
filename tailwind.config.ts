@@ -60,6 +60,7 @@ const config: Config = {
         julius: ["Julius Sans One", "sans-serif"],
         ballet: ["Ballet", "cursive"],
         beng: ['bengy', 'sans-serif'],
+        vape: ["Press Start 2P", 'system-ui'],
       },
       borderRadius: {
         lg: "var(--radius)",

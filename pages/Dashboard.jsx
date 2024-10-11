@@ -1,12 +1,19 @@
 // Dashboard.js
-
+import React from 'react';
+import '../app/vaporwave.css';
 import "../app/globals.css";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import ShorkSpinAnimation from '../components/ShorkViewer';
+// import TeletextChart from '../components/TeletextChart';
 
 // Dynamically import components
 const AnimatedLineChart = dynamic(
   () => import("../components/AnimatedLineChart"),
+  { ssr: false }
+);
+const CombinedChart = dynamic(
+  () => import("../components/CombinedChart"),
   { ssr: false }
 );
 const FlashingStocksTable = dynamic(
@@ -31,152 +38,193 @@ const Dashboard = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCryptoData((prevData) => {
-        // Update cryptoData
         const newData = prevData.map((crypto) => {
-          const change = (Math.random() * 10 - 5).toFixed(2);
-          const newValue = Math.max(
-            0,
-            parseFloat(crypto.value) + parseFloat(change)
-          );
-          return { ...crypto, value: newValue.toFixed(2), change };
+          // Introduce a weight factor to create smoother changes
+          const weight = Math.random() < 0.85 ? 2 : 5; // 85% chance for smaller changes
+          const change = ((Math.random() - 0.5) * weight).toFixed(2);
+          const newValue = Math.max(0, parseFloat(crypto.value) + parseFloat(change));
+
+          // Sometimes add a random spike to simulate market excitement
+          const randomSpikeChance = Math.random();
+          let finalValue = newValue;
+
+          if (randomSpikeChance < 0.1) {
+            const spike = Math.random() > 0.5 ? Math.random() * 20 : Math.random() * -20; // Random positive or negative spike
+            finalValue = Math.max(0, newValue + spike);
+          }
+
+          return {
+            ...crypto,
+            value: finalValue.toFixed(2),
+            change: change,
+          };
         });
         return newData;
       });
-
-      // Update allStocks (if needed)
-    }, 2000);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
-
   return (
-    <div
-      style={{
-        padding: "10px",
-        backgroundColor: "#111827",
-        color: "#FFFFFF",
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        boxSizing: "border-box",
-        overflow: "hidden",
-        margin: 0,
-      }}
-    >
-      <h1
-        style={{ textAlign: "center", margin: "0 0 10px 0", fontSize: "2vw" }}
-      >
-        The Stock Market{" "}
-      </h1>
+    <div className="flex flex-col items-center" style={{
+      backgroundImage: 'url("/80s.jpeg")',
+      backgroundRepeat: "repeat",
+    }}>
 
-      {/* Top Row: Animated Line Chart */}
-      <div
+
+      (
+      <div className="dashboard-container scanlines static-noise"
         style={{
-          flex: 3,
+          padding: "10px",
+          height: "100vh",
           display: "flex",
-          justifyContent: "center",
+          flexDirection: "column",
+          boxSizing: "border-box",
+          overflow: "hidden",
+          margin: 0,
+          maxWidth: "90%",
+        }}
+      >
+        {/* Top Row for Header and Sharks */}
+        <div style={{
+          display: "flex",
           alignItems: "center",
-          marginBottom: "10px",
-          boxSizing: "border-box",
-          overflow: "hidden",
-          minHeight: 0,
-        }}
-      >
-        <AnimatedLineChart cryptoData={cryptoData} />
-      </div>
+          justifyContent: "center", // Changed to center to ensure items are centered
+          height: "auto",
+          background: "#0000ff",
+          borderRadius: "0px",
+          border: "5px solid #ff00ff",
+        }}>
 
-      {/* Second Row: Rolling Ticker Tape */}
-      <div
-        style={{
-          flex: 0.5, // Reduce the flex to allocate more space to other components
-          marginBottom: "10px",
-          boxSizing: "border-box",
-          overflow: "hidden",
-          minHeight: 0,
-          height: "50px", // Adjust height as needed
-        }}
-      >
-        <FunnyTickerTape />
-      </div>
+          <h1 className="gothic-font dashboard-title text-gradient"
+            style={{
+              textAlign: "center",
+              margin: "0 20px", // Adjust margin as needed
+              fontSize: "4vw",
 
-      {/* Third Row: Table, Pie Chart, and News & Sentiment Side by Side */}
-      <div
-        style={{
-          flex: 2,
-          display: "flex",
-          gap: "10px",
-          justifyContent: "space-between",
-          alignItems: "stretch",
-          boxSizing: "border-box",
-          overflow: "hidden",
-          minHeight: 0,
-        }}
-      >
-        {/* Table */}
+              padding: "20px",
+
+              flex: 1, // Allows the text to fill the space between sharks
+              display: "flex",
+              justifyContent: "center", // Centers the text inside the h1 element
+              alignItems: "center", // Aligns the text vertically
+            }}
+          >
+            発金 StockMatic <i>pro</i>
+          </h1>
+          <ShorkSpinAnimation /> {/* Shark animation on the right */}
+        </div>
+        {/* Rest of the Dashboard Components */}
+        {/* Top Row: Animated Line Chart */}
         <div
           style={{
-            flex: 1,
-            backgroundColor: "#1f2937",
-            padding: "10px",
-            borderRadius: "10px",
+            flex: 3,
             display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
             justifyContent: "center",
-            boxSizing: "border-box",
-            overflow: "hidden",
-            minHeight: 0,
-          }}
-        >
-          <FlashingStocksTable allStocks={allStocks} />
-        </div>
-
-        {/* Pie Chart */}
-        <div
-          style={{
-            flex: 1,
-            backgroundColor: "#1f2937",
-            padding: "10px",
-            borderRadius: "10px",
-            display: "flex",
-            flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center",
+            marginBottom: "10px",
             boxSizing: "border-box",
             overflow: "hidden",
             minHeight: 0,
+            marginTop: "10px"
           }}
         >
-          <FakePieChart cryptoData={cryptoData} />
+          <AnimatedLineChart cryptoData={cryptoData} />
         </div>
 
-        {/* News and Market Sentiment */}
+        {/* Second Row: Rolling Ticker Tape */}
         <div
           style={{
-            flex: 1,
-            backgroundColor: "#1f2937",
-            padding: "0", // Remove padding to maximize space
-            borderRadius: "10px",
+            flex: 0.5, // Reduce the flex to allocate more space to other components
+            marginBottom: "10px",
+            boxSizing: "border-box",
+            overflow: "hidden",
+            minHeight: 0,
+            height: "50px", // Adjust height as needed
+          }}
+        >
+          <FunnyTickerTape />
+        </div>
+
+        {/* Third Row: Table, Pie Chart, and News & Sentiment Side by Side */}
+        <div
+          style={{
+            flex: 2,
             display: "flex",
-            flexDirection: "column",
+            gap: "10px",
+            justifyContent: "space-between",
+            alignItems: "stretch",
             boxSizing: "border-box",
             overflow: "hidden",
             minHeight: 0,
           }}
         >
-          <NewsAndSentiment cryptoData={cryptoData} />
+          {/* Table */}
+          <div
+            style={{
+              flex: 1,
+              backgroundColor: "#858484",
+              padding: "10px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              boxSizing: "border-box",
+              overflow: "hidden",
+              minHeight: 0,
+            }}
+          >
+            <FlashingStocksTable allStocks={allStocks} />
+          </div>
+
+          {/* Pie Chart */}
+          <div
+            style={{
+              flex: 1,
+              padding: "10px",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "space-around",
+              boxSizing: "border-box",
+              overflow: "hidden",
+              // background: "red"
+              background: "#858484"
+            }}
+            className="combined-chart-wrapper"
+          >
+            <CombinedChart cryptoData={cryptoData} />
+          </div>
+
+          {/* News and Market Sentiment */}
+          <div
+            style={{
+              flex: 1,
+              backgroundColor: "#858484",
+              padding: "0", // Remove padding to maximize space
+              // borderRadius: "10px",
+              display: "flex",
+              flexDirection: "column",
+              boxSizing: "border-box",
+              overflow: "hidden",
+              minHeight: 0,
+            }}
+          >
+            <NewsAndSentiment cryptoData={cryptoData} />
+          </div>
         </div>
+      </div >
+      <div className="grain-overlay">
       </div>
-    </div>
+    </div >
   );
 };
 
 const generateInitialCryptoData = () => {
   return [
-    { name: "BitDogecoin", value: "100.00", change: "0.00" },
-    { name: "LiteCat", value: "150.00", change: "0.00" },
-    { name: "EtherHamster", value: "200.00", change: "0.00" },
-    { name: "RippleRabbit", value: "250.00", change: "0.00" },
+    { name: "Buttcoin", value: "100.00", change: "0.00" },
+    { name: "Moneum", value: "100.00", change: "0.00" },
+    { name: "Fun Gerbils", value: "100.00", change: "0.00" },
   ];
 };
 

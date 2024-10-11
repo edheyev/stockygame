@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import "../app/globals.css";
+import "../app/vaporwave.css"; // Ensure your styles are imported
 
 const FakePieChart = ({ cryptoData }) => {
   const chartRef = useRef(null);
@@ -39,7 +40,10 @@ const FakePieChart = ({ cryptoData }) => {
       .append("g")
       .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
-    const color = d3.scaleOrdinal(d3.schemeCategory10);
+    // Vaporwave color palette
+    const vaporwaveColors = ["#FF77E9", "#8C1EFF", "#00FFFF", "#FFB347"];
+
+    const color = d3.scaleOrdinal(vaporwaveColors);
 
     const pie = d3.pie().value((d) => d.value);
     const arc = d3.arc().innerRadius(0).outerRadius(radius);
@@ -49,15 +53,17 @@ const FakePieChart = ({ cryptoData }) => {
     arcs
       .append("path")
       .attr("d", arc)
-      .attr("fill", (d, i) => color(i));
+      .attr("fill", (d, i) => color(i))
+      .attr("class", "neon-path");
 
     // Add labels
     arcs
       .append("text")
       .attr("transform", (d) => `translate(${arc.centroid(d)})`)
       .attr("text-anchor", "middle")
-      .attr("font-size", "12px")
+      .attr("font-size", "20px")
       .attr("fill", "#fff")
+      .attr("class", "vaporwave-text")
       .text((d) => d.data.name);
   };
 
@@ -68,12 +74,7 @@ const FakePieChart = ({ cryptoData }) => {
   return (
     <div
       ref={chartRef}
-      style={{
-        width: "100%",
-        height: "100%",
-        position: "relative",
-        overflow: "hidden",
-      }}
+      className="fake-pie-chart-container"
     ></div>
   );
 };

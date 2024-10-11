@@ -1,0 +1,361 @@
+/* vaporwave.css */
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* Existing styles */
+body {
+    background: linear-gradient(135deg, #ee8be6 0%, #c8afeb 100%);
+    background: linear-gradient(135deg, #4d484d 0%, #2e373f 100%);
+    font-family: 'Press Start 2P', sans-serif;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    position: relative;
+    /* For overlays */
+}
+
+a {
+    color: #00FFFF;
+}
+
+.neon-border {
+    border: 2px solid;
+    border-image: linear-gradient(45deg, #FF77E9, #00FFFF) 1;
+}
+
+.neon-text {
+    color: #fff;
+    text-shadow:
+        /* 0 0 5px #FF00FF, */
+        0 0 10px #6edfd7,
+        /* 0 0 20px #FF00FF, */
+        0 0 40px #FF00FF;
+}
+
+/* Vaporwave chart styles */
+.vaporwave-chart-container {
+    font-family: 'Press Start 2P', monospace;
+    position: relative;
+}
+
+.vaporwave-chart text {
+    fill: #acec84;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+}
+
+.axis path,
+.axis line {
+    stroke: rgba(255, 255, 255, 0.5);
+}
+
+.vaporwave-axis .tick text {
+    fill: #acec84;
+}
+
+.axis-label {
+    font-size: 12px;
+}
+
+.neon-line {
+    filter: url(#glow);
+}
+
+.neon-rect {
+    filter: url(#glow);
+}
+
+.vaporwave-text {
+    fill: #fff;
+    /* text-shadow:
+        0 0 5px #FF00FF,
+        0 0 10px #FF00FF,
+        0 0 20px #FF00FF; */
+    font-family: "VT323", sans-serif;
+
+}
+
+/* SVG Filters for Glow Effect */
+.vaporwave-chart defs #glow {
+    filter: drop-shadow(0 0 10px #FF77E9);
+}
+
+/* Teletext styles */
+
+/* Teletext color variables */
+:root {
+    --teletext-black: #000000;
+    --teletext-red: #ff0000;
+    --teletext-green: #00ff00;
+    --teletext-yellow: #ffff00;
+    --teletext-blue: #0000ff;
+    --teletext-magenta: #ff00ff;
+    --teletext-cyan: #00ffff;
+    --teletext-white: #ffffff;
+}
+
+/* Teletext font */
+.teletext-font {
+    font-family: 'VT323', monospace;
+}
+
+/* Scanlines effect */
+.scanlines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.1) 2px,
+            rgba(0, 0, 0, 0.1) 4px);
+}
+
+/* Static noise overlay */
+.static-noise::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: url('/static-noise.jpg');
+    opacity: 0.081;
+    mix-blend-mode: screen;
+}
+
+/* Blinking text */
+@keyframes blink-animation {
+    10% {
+        opacity: 0;
+    }
+}
+
+.text-gradient {
+    text-shadow: -.12625rem -.0625rem 0 #6BFFFF, .4625rem .325rem 0 #FF819E;
+}
+
+.blink {
+    animation: blink-animation 1s steps(1, start) infinite;
+}
+
+/* Glitch effect */
+.glitch {
+    position: relative;
+    color: #fff;
+    font-family: 'VT323', monospace;
+    font-size: 2em;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+}
+
+.glitch::before {
+    animation: glitch-top 2s infinite;
+    color: #ff00c1;
+    clip: rect(0, 900px, 0, 0);
+}
+
+.glitch::after {
+    animation: glitch-bottom 2s infinite;
+    color: #00fff9;
+    clip: rect(0, 0, 0, 900px);
+}
+
+@keyframes glitch-top {
+    0% {
+        clip: rect(0, 900px, 0, 0);
+    }
+
+    10% {
+        clip: rect(10px, 900px, 80px, 0);
+        transform: translate(-2px, -2px);
+    }
+
+    20% {
+        clip: rect(0, 900px, 0, 0);
+    }
+}
+
+@keyframes glitch-bottom {
+    0% {
+        clip: rect(0, 0, 0, 900px);
+    }
+
+    10% {
+        clip: rect(85px, 900px, 140px, 0);
+        transform: translate(2px, 2px);
+    }
+
+    20% {
+        clip: rect(0, 0, 0, 900px);
+    }
+}
+
+/* Teletext table styles */
+.teletext-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'VT323', monospace;
+    font-size: 1.2em;
+    background-color: var(--teletext-black);
+}
+
+.teletext-table th,
+.teletext-table td {
+    border: 1px solid var(--teletext-white);
+    padding: 5px;
+    text-align: center;
+}
+
+.teletext-table th {
+    background-color: var(--teletext-red);
+    color: 'var(--teletext-white)';
+}
+
+.teletext-table td {
+    color: var(--teletext-green);
+}
+
+.price-up {
+    color: var(--teletext-green);
+}
+
+.price-down {
+    color: var(--teletext-red);
+}
+
+/* Teletext ticker styles */
+.teletext-ticker {
+    background-color: var(--teletext-blue);
+    color: var(--teletext-yellow);
+    font-family: 'VT323', monospace;
+    font-size: 1.5em;
+    padding: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.ticker-item {
+    display: inline-block;
+    margin-right: 50px;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.marquee {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+}
+
+/* Additional styles */
+.grain-overlay {
+    background-image: url("/grain.webp");
+    opacity: 0.8;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: overlay;
+}
+
+/* Adjustments to existing classes */
+.pixel-font {
+    font-family: 'Press Start 2P', monospace;
+}
+
+.gothic-font {
+    font-family: "Dela Gothic One", sans-serif;
+}
+
+/* Adjust glitch animation for better effect */
+@keyframes glitch {
+    0% {
+        clip: rect(0, 900px, 0, 0);
+    }
+
+    10% {
+        clip: rect(0, 900px, 100px, 0);
+        transform: translate(-2px, -2px);
+    }
+
+    20% {
+        clip: rect(0, 900px, 0, 0);
+    }
+}
+
+/* FakePieChart styles */
+.fake-pie-chart-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.neon-path {
+    filter: url(#glow);
+}
+
+/* Apply the same glow filter as before */
+.vaporwave-chart defs #glow {
+    filter: drop-shadow(0 0 10px #FF77E9);
+}
+
+/* CombinedChart styles */
+.combined-chart-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.chart-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+/* TeletextChart styles */
+.teletext-chart {
+    font-family: 'VT323', monospace;
+    font-size: 1.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: left;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.teletext-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.teletext-chart-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
