@@ -1,154 +1,175 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../app/vaporwave.css";
 
-const FlashingStocksTable = () => {
+const FlashingStocksTable = ({ crashProgress = 0 }) => {
   const [allStocks, setAllStocks] = useState(generateFunnyStocks());
   const [displayedStocks, setDisplayedStocks] = useState([]);
   const [hasMounted, setHasMounted] = useState(false);
 
+  // 1) meltdownRef holds the latest crashProgress
+  const meltdownRef = useRef(crashProgress);
+
+  // Whenever crashProgress changes, update meltdownRef
+  useEffect(() => {
+    meltdownRef.current = crashProgress;
+
+  }, [crashProgress]);
+
+
   useEffect(() => {
     setHasMounted(true);
-    // Initially select 10 stocks to display
-    setDisplayedStocks(selectRandomStocks(allStocks, 4));
+    // Initially pick 11
+    setDisplayedStocks(selectRandomStocks(allStocks, 11));
 
+    // 2) Setup one interval that fires every 5 seconds
     const interval = setInterval(() => {
-      // Update prices and recommendations for all stocks
       setAllStocks((prevStocks) =>
         prevStocks.map((stock) => {
-          const change = (Math.random() * 20 - 10).toFixed(2); // Random change between -10 and +10
-          const price = (parseFloat(stock.price) + parseFloat(change)).toFixed(
-            2
-          );
-          const recommendation = generateRecommendation();
-          return {
-            ...stock,
-            price,
-            change,
-            isFlashing: Math.abs(change) > 5, // Flash if change is significant
-            recommendation,
-          };
+          const cp = meltdownRef.current; // read current meltdown from ref
+
+          if (cp >= 1) {
+            // Full meltdown
+            return {
+              ...stock,
+              price: "0.00",
+              change: "-9999",
+              recommendation: "OH NO",
+              isFlashing: true,
+            };
+          } else {
+            // Normal update
+            let baseChange = (Math.random() * 20 - 10).toFixed(2);
+            // meltdown factor up to e.g. 20 for more negativity
+            const meltdownFactor = cp * 20;
+
+            let finalChange = parseFloat(baseChange) - meltdownFactor;
+            finalChange = parseFloat(finalChange.toFixed(2));
+
+            const newPrice = parseFloat(stock.price) + finalChange;
+            const clamped = Math.max(newPrice, 0);
+
+            return {
+              ...stock,
+              price: clamped.toFixed(2),
+              change: finalChange.toFixed(2),
+              recommendation: cp > 0.5 ? "SELL EVERYTHING!" : stock.recommendation,
+              isFlashing: Math.abs(finalChange) > 5 || cp > 0.7,
+            };
+          }
         })
       );
 
-      // Randomly select stocks to display
-      setDisplayedStocks(selectRandomStocks(allStocks, 4));
-    }, 3000); // Update every 3 seconds
+      // Re-randomize displayed subset if meltdown not done
+      if (meltdownRef.current < 1) {
+        setDisplayedStocks(selectRandomStocks(allStocks, 11));
+      }
+    }, 6000 + (100 - 6000) * crashProgress);
+
 
     return () => clearInterval(interval);
-  }, [allStocks]);
+  }, [allStocks]); // never re-run after mount or meltdown changes
 
-  if (!hasMounted) {
-    return null;
-  }
+  if (!hasMounted) return null;
 
   return (
     <div style={{ width: "100%", height: "100%", overflow: "hidden" }} className="pixel-font">
-      <table className="teletext-table"
+      <table
+        className="teletext-table"
         style={{
           width: "100%",
           textAlign: "center",
           borderCollapse: "collapse",
+          tableLayout: "fixed", // Ensures fixed widths are respected
         }}
       >
-        {/* <thead>
-          <tr >
-            <th style={{ padding: "8px" }}>Stock</th>
-            <th style={{ padding: "8px" }}>Price</th>
-            <th style={{ padding: "8px" }}>Change</th>
-            <th style={{ padding: "8px" }}>DO</th>
-          </tr>
-        </thead> */}
+        <colgroup>
+          <col style={{ width: "30%" }} /> {/* Stock Name */}
+          <col style={{ width: "20%" }} /> {/* Price */}
+          <col style={{ width: "20%" }} /> {/* Change */}
+          <col style={{ width: "30%" }} /> {/* Recommendation */}
+        </colgroup>
         <tbody>
-          {displayedStocks.map((stock, index) => (
-            <tr
-              key={index}
-              style={{
-                backgroundColor:
-                  parseFloat(stock.change) > 0 ? 'rgba(255, 119, 233, 0.8)' : 'rgba(0, 255, 255, 0.8)',
-                animation: stock.isFlashing
-                  ? "flash 1s infinite alternate"
-                  : "none",
-              }}
-            >
-              <td style={{ padding: "8px" }}>{stock.name}</td>
-              <td style={{ padding: "8px" }}>{stock.price}</td>
-              <td style={{ padding: "8px" }}>{stock.change}</td>
-              <td style={{ padding: "8px" }}>{stock.recommendation}</td>
-            </tr>
-          ))}
+          {displayedStocks.map((stock, index) => {
+            const priceNum = parseFloat(stock.price) || 0;
+            const chgNum = parseFloat(stock.change) || 0;
+
+            // Full meltdown => all red & blinking
+            if (meltdownRef.current >= 1) {
+              return (
+                <tr key={index} style={{ backgroundColor: "black", color: "red", animation: "flash 1s infinite alternate" }}>
+                  <td style={{ padding: "8px", whiteSpace: "nowrap" }}>{stock.name}</td>
+                  <td style={{ padding: "8px", whiteSpace: "nowrap" }}>{stock.price}</td>
+                  <td style={{ padding: "8px", whiteSpace: "nowrap" }}>{stock.change}</td>
+                  <td style={{ padding: "8px", whiteSpace: "nowrap" }}>{stock.recommendation}</td>
+                </tr>
+              );
+            }
+
+            // Color logic
+            let textColor = chgNum >= 0 ? "#00ff00" : "#ffa500"; // green vs orange
+            if (Math.abs(chgNum) > 9) textColor = "#ff0000"; // big drop => red
+
+            return (
+              <tr
+                key={index}
+                style={{
+                  backgroundColor: "black",
+                  color: textColor,
+                  animation: stock.isFlashing ? "flash 1s infinite alternate" : "none",
+                }}
+              >
+                <td style={{ padding: "8px", whiteSpace: "nowrap" }}>{stock.name}</td>
+                <td style={{ padding: "8px", whiteSpace: "nowrap" }}>{stock.price}</td>
+                <td style={{ padding: "8px", whiteSpace: "nowrap" }}>{stock.change}</td>
+                <td style={{ padding: "8px", whiteSpace: "nowrap" }}>{stock.recommendation}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
+
       <style jsx>{`
         @keyframes flash {
-          from {
-            opacity: 1;
-          }
-          to {
-            opacity: 0.5;
-          }
+          from { opacity: 1; }
+          to { opacity: 0.5; }
         }
       `}</style>
     </div>
   );
 };
 
-const generateFunnyStocks = () => {
+/** Utility code for stocks */
+function generateFunnyStocks() {
   const stockNames = [
-    "FAT Corp",
-    "Buy N Large",
-    "Vinnie Jones Ltd",
-    "Swiss Things",
-    "ANU5",
-    "BLOW",
-    "BLUNTZ",
-    "Bigfoot Believers Co",
-    "Wayne Enterprises",
-    "Muffins",
-    "FAFF",
-    "BADGR",
-    "BRN",
-    "P3NI5",
-    "FART",
-    "BEANS",
-    "WHIFF",
-    "GOLDS",
-    "GOLDBLUM",
-    "TREES",
-    "Prestige Worldwide",
-    "Very Big Corp",
-    "Good Company",
-    "WTF",
-    "HIGH 5s",
+    "FAT Corp", "Buy N Large", "Vinnie Jones Ltd", "Swiss Things", "ANU5", "BLOW",
+    "BLUNTZ", "Bigfoot Believers Co", "Wayne Enterprises", "Muffins", "FAFF", "BADGR",
+    "BRN", "P3NI5", "FART", "BEANS", "WHIFF", "GOLDS", "GOLDBLUM", "TREES",
+    "Prestige Worldwide", "Very Big Corp", "Good Company", "WTF", "HIGH 5s",
   ];
-
   return stockNames.map((name) => ({
     name,
-    price: (Math.random() * 500 + 50).toFixed(2), // Random starting price between 50 and 550
+    price: (Math.random() * 500 + 50).toFixed(2),
     change: "0.00",
     recommendation: generateRecommendation(),
   }));
-};
+}
 
-const selectRandomStocks = (stocks, count) => {
-  // Shuffle the array and select the first 'count' stocks
+function selectRandomStocks(stocks, count) {
   const shuffled = [...stocks].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
-};
+}
 
-const generateRecommendation = () => {
+function generateRecommendation() {
   const recommendations = ["BUY!!!", "SELL!!", "HOLD", "MEGABUY", "MEGASELL"];
-  // Weighted random selection to make "MEGABUY" and "MEGASELL" less frequent
   const weights = [0.4, 0.4, 0.15, 0.025, 0.025];
-  const cumulativeWeights = weights.map(
-    ((sum) => (value) => (sum += value))(0)
-  );
-  const random = Math.random();
-  for (let i = 0; i < cumulativeWeights.length; i++) {
-    if (random < cumulativeWeights[i]) {
+  const cw = weights.map(((sum) => (v) => (sum += v))(0));
+  const rnd = Math.random();
+  for (let i = 0; i < cw.length; i++) {
+    if (rnd < cw[i]) {
       return recommendations[i];
     }
   }
   return recommendations[recommendations.length - 1];
-};
+}
 
 export default FlashingStocksTable;

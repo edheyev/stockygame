@@ -6,8 +6,8 @@
 
 /* Existing styles */
 body {
-    background: linear-gradient(135deg, #ee8be6 0%, #c8afeb 100%);
-    background: linear-gradient(135deg, #4d484d 0%, #2e373f 100%);
+    /* background: linear-gradient(135deg, #ee8be6 0%, #c8afeb 100%);
+    background: linear-gradient(135deg, #4d484d 0%, #2e373f 100%); */
     font-family: 'Press Start 2P', sans-serif;
     color: #fff;
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
@@ -21,7 +21,7 @@ a {
 
 .neon-border {
     border: 2px solid;
-    border-image: linear-gradient(45deg, #FF77E9, #00FFFF) 1;
+    /* border-image: linear-gradient(45deg, #FF77E9, #00FFFF) 1; */
 }
 
 .neon-text {
@@ -51,7 +51,7 @@ a {
 }
 
 .vaporwave-axis .tick text {
-    fill: #acec84;
+    /* fill: #acec84; */
 }
 
 .axis-label {
@@ -171,7 +171,7 @@ a {
 
 /* Text Gradient */
 .text-gradient {
-    background: linear-gradient(90deg, #ff00ff, #00ffff);
+    /* background: linear-gradient(90deg, #ff00ff, #00ffff); */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -325,7 +325,7 @@ a {
 }
 
 .teletext-table td {
-    color: var(--teletext-green);
+    /* color: var(--teletext-green); */
 }
 
 .price-up {
@@ -333,7 +333,7 @@ a {
 }
 
 .price-down {
-    color: var(--teletext-red);
+    color: var(--teletext-blue);
 }
 
 /* Teletext ticker styles */
@@ -373,6 +373,17 @@ a {
 .grain-overlay {
     background-image: url("/grain.webp");
     opacity: 0.8;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: overlay;
+}
+
+.bunny-overlay {
+    opacity: 1;
     pointer-events: none;
     position: fixed;
     top: 0;
