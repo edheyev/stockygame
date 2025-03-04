@@ -8,8 +8,8 @@ import ShorkSpinAnimation from '../components/ShorkViewer';
 // import TeletextChart from '../components/TeletextChart';
 
 // Dynamically import components
-const AnimatedLineChart = dynamic(
-  () => import("../components/AnimatedLineChart"),
+const GameWindow = dynamic(
+  () => import("../components/StockGame"),
   { ssr: false }
 );
 const CombinedChart = dynamic(
@@ -31,7 +31,7 @@ const NewsAndSentiment = dynamic(
   { ssr: false }
 );
 
-const Dashboard = () => {
+const Dashboard2 = () => {
   const [cryptoData, setCryptoData] = useState(generateInitialCryptoData());
   const [allStocks, setAllStocks] = useState(generateFunnyStocks());
 
@@ -40,7 +40,7 @@ const Dashboard = () => {
       setCryptoData((prevData) => {
         const newData = prevData.map((crypto) => {
           // Introduce a weight factor to create smoother changes
-          const weight = Math.random() < 0.85 ? 2 : 5; // 85% chance for smaller changes
+          const weight = Math.random() < 0.85 ? 2 : 7; // 85% chance for smaller changes
           const change = ((Math.random() - 0.5) * weight).toFixed(2);
           const newValue = Math.max(0, parseFloat(crypto.value) + parseFloat(change));
 
@@ -48,10 +48,11 @@ const Dashboard = () => {
           const randomSpikeChance = Math.random();
           let finalValue = newValue;
 
-          if (randomSpikeChance < 0.1) {
-            const spike = Math.random() > 0.5 ? Math.random() * 20 : Math.random() * -20; // Random positive or negative spike
+          if (randomSpikeChance < 0.5) {
+            const spike = Math.random() > 0.5 ? Math.random() * 40 : Math.random() * -40; // Random positive or negative spike
             finalValue = Math.max(0, newValue + spike);
           }
+
 
           return {
             ...crypto,
@@ -59,6 +60,9 @@ const Dashboard = () => {
             change: change,
           };
         });
+        if (newData.length > 10) {
+          newData.shift()
+        }
         return newData;
       });
     }, 1000);
@@ -76,7 +80,7 @@ const Dashboard = () => {
       <div className="dashboard-container scanlines static-noise"
         style={{
           padding: "10px",
-          height: "100vh",
+          // height: "100vh",
           display: "flex",
           flexDirection: "column",
           boxSizing: "border-box",
@@ -89,7 +93,7 @@ const Dashboard = () => {
         <div style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center", // Changed to center to ensure items are centered
+          justifyContent: "start", // Changed to center to ensure items are centered
           height: "auto",
           background: "#0000ff",
           borderRadius: "0px",
@@ -98,7 +102,7 @@ const Dashboard = () => {
 
           <h1 className="gothic-font dashboard-title text-gradient"
             style={{
-              textAlign: "center",
+              textAlign: "start",
               margin: "0 20px", // Adjust margin as needed
               fontSize: "4vw",
 
@@ -111,14 +115,14 @@ const Dashboard = () => {
             }}
           >
             発金 StockMatic <i style={{ fontFamily: "gothic" }}>pro</i>
+            {/* <ShorkSpinAnimation /> */}
           </h1>
-          {/* <ShorkSpinAnimation /> */}
         </div>
         {/* Rest of the Dashboard Components */}
         {/* Top Row: Animated Line Chart */}
         <div
           style={{
-            flex: 3,
+            // flex: 3,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -129,7 +133,7 @@ const Dashboard = () => {
             marginTop: "10px"
           }}
         >
-          <AnimatedLineChart cryptoData={cryptoData} />
+          <GameWindow />
         </div>
 
         {/* Second Row: Rolling Ticker Tape */}
@@ -232,4 +236,4 @@ const generateFunnyStocks = () => {
   // ... (same as before)
 };
 
-export default Dashboard;
+export default Dashboard2;
