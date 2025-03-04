@@ -12,8 +12,7 @@ import {
     SidePanel,
     LiquidityButton,
 } from "./GameStyles";
-import { database } from "../app/firebase"; // Import the initialized Firebase database
-import { ref, set } from "firebase/database";
+
 const { webkitSpeechRecognition } = window;
 const SpeechRecognition = webkitSpeechRecognition || window.SpeechRecognition;
 
@@ -162,14 +161,7 @@ const GameWindow = () => {
             };
         }
     }, [screen]); // Re-run when the screen changes
-    const savePlayerData = (finalScore) => {
-        const playerRef = ref(database, 'players/' + playerName);
-        set(playerRef, {
-            name: playerName,
-            score: finalScore,
-            timestamp: Date.now()
-        });
-    };
+
 
     // Game Timer Logic
     useEffect(() => {

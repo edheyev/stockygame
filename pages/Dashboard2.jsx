@@ -151,72 +151,7 @@ const Dashboard2 = () => {
         </div>
 
         {/* Third Row: Table, Pie Chart, and News & Sentiment Side by Side */}
-        <div
-          style={{
-            flex: 2,
-            display: "flex",
-            gap: "10px",
-            justifyContent: "space-between",
-            alignItems: "stretch",
-            boxSizing: "border-box",
-            overflow: "hidden",
-            minHeight: 0,
-          }}
-        >
-          {/* Table */}
-          <div
-            style={{
-              flex: 1,
-              backgroundColor: "#858484",
-              padding: "10px",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              boxSizing: "border-box",
-              overflow: "hidden",
-              minHeight: 0,
-            }}
-          >
-            <FlashingStocksTable allStocks={allStocks} />
-          </div>
 
-          {/* Pie Chart */}
-          <div
-            style={{
-              flex: 1,
-              padding: "10px",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-around",
-              boxSizing: "border-box",
-              overflow: "hidden",
-              // background: "red"
-              background: "#858484"
-            }}
-            className="combined-chart-wrapper"
-          >
-            <CombinedChart cryptoData={cryptoData} />
-          </div>
-
-          {/* News and Market Sentiment */}
-          <div
-            style={{
-              flex: 1,
-              backgroundColor: "#858484",
-              padding: "0", // Remove padding to maximize space
-              // borderRadius: "10px",
-              display: "flex",
-              flexDirection: "column",
-              boxSizing: "border-box",
-              overflow: "hidden",
-              minHeight: 0,
-            }}
-          >
-            <NewsAndSentiment cryptoData={cryptoData} />
-          </div>
-        </div>
       </div >
       <div className="grain-overlay">
       </div>

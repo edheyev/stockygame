@@ -4,8 +4,6 @@ import '../app/vaporwave.css';
 import "../app/globals.css";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import ShorkSpinAnimation from '../components/ShorkViewer';
-// import TeletextChart from '../components/TeletextChart';
 
 // Dynamically import components
 const AnimatedLineChart = dynamic(
@@ -111,6 +109,11 @@ const Dashboard = () => {
             }}
           >
             発金 StockMatic <i style={{ fontFamily: "gothic" }}>pro</i>
+            <a href="/dashboard2">
+              <button>
+                <i className="fa-solid fa-arrow-right"></i>
+              </button>
+            </a>
           </h1>
           {/* <ShorkSpinAnimation /> */}
         </div>
