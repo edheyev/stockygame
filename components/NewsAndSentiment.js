@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import "../app/globals.css";
-import "../app/vaporwave.css";
-
+import '../app/vaporwave.css';
+import '../app/globals.css';
 const NewsAndSentiment = ({ cryptoData }) => {
   const [currentHeadline, setCurrentHeadline] = useState("");
   const [sentiment, setSentiment] = useState("Neutral");

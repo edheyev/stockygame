@@ -1,10 +1,11 @@
 import React from 'react';
 import '../app/vaporwave.css';
-import "../app/globals.css";
+import '../app/globals.css';
+
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import Link from 'next/link';
-import { PixelButton } from "../components/GameStyles"; // import your styled PixelButton
+// import { PixelButton } from "../app/GameStyles"; // import your styled PixelButton
 
 // Dynamically import components
 const AnimatedLineChart = dynamic(
@@ -105,7 +106,8 @@ const Dashboard = () => {
             発金 StockMatic <i style={{ fontFamily: "gothic" }}>pro</i>
           </h1>
           <Link href="/dashboard2" passHref>
-            <PixelButton>CLICK HERE TO PLAY THE MARKETS</PixelButton>
+            <button className="liquidity-button pixel-button"
+            >CLICK HERE TO PLAY THE MARKETS</button>
           </Link>
         </div>
 
@@ -159,6 +161,7 @@ const Dashboard = () => {
             justifyContent: "center",
             overflow: "hidden",
             minHeight: 0,
+            paddingTop:"20px"
             
           }}>
             <AlternatingDisplay allStocks={allStocks} cryptoData={cryptoData} />

@@ -2,9 +2,8 @@ import React from "react";
 import FakePieChart from "./FakePieChart";
 import TeletextChart from "./TeletextChart";
 import BreakingNews from "./BreakingNews"; // Import the new breaking news component
-import "../app/globals.css";
-import "../app/vaporwave.css"; // Ensure your styles are imported
-
+import '../app/vaporwave.css';
+import '../app/globals.css';
 const CombinedChart = ({ cryptoData }) => {
   return (
     <div style={{ padding: "0px" }} className="combined-chart-container">

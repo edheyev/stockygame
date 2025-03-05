@@ -1,5 +1,6 @@
 import styled, { keyframes } from "styled-components";
-
+import '../app/vaporwave.css';
+import '../app/globals.css';
 // Container for the game window
 export const GameContainer = styled.div`
   display: flex;

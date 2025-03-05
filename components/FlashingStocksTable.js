@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "../app/vaporwave.css";
-
+import '../app/vaporwave.css';
+import '../app/globals.css';
 const FlashingStocksTable = () => {
   const [allStocks, setAllStocks] = useState(generateFunnyStocks());
   const [displayedStocks, setDisplayedStocks] = useState([]);
@@ -31,7 +31,7 @@ const FlashingStocksTable = () => {
       );
 
       // Randomly select stocks to display
-      setDisplayedStocks(selectRandomStocks(allStocks, 4));
+      setDisplayedStocks(selectRandomStocks(allStocks, 5));
     }, 3000); // Update every 3 seconds
 
     return () => clearInterval(interval);

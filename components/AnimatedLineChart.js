@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
-import "../app/globals.css";
-import "../app/vaporwave.css"; // Keep vaporwave styles if desired
-
+import '../app/vaporwave.css';
+import '../app/globals.css';
 const AnimatedLineChart = ({ cryptoData }) => {
   const chartRef = useRef(null);
   const [hasMounted, setHasMounted] = useState(false);

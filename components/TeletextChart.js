@@ -1,8 +1,8 @@
 // TeletextChart.js
 
 import React, { useEffect, useState } from "react";
-import "../app/vaporwave.css"; // Ensure your styles are imported
-
+import '../app/vaporwave.css';
+import '../app/globals.css';
 const TeletextChart = ({ cryptoData }) => {
     const [data, setData] = useState([]);
 

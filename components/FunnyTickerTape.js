@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../app/vaporwave.css";
+import '../app/vaporwave.css';
+import '../app/globals.css';
 
 // Ticker message arrays
 const funnyStocks = [

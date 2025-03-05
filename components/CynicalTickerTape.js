@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useMemo } from "react";
-import "../app/vaporwave.css";
-
+import '../app/vaporwave.css';
+import '../app/globals.css';
 const CynicalTickerTape = ({ tips = [] }) => {
   // Filter out invalid tip objects (only recalc if tips change)
   const validTips = useMemo(

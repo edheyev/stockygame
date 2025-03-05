@@ -2,9 +2,8 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
-import "../app/globals.css";
-import "../app/vaporwave.css"; // Ensure your styles are imported
-
+import '../app/vaporwave.css';
+import '../app/globals.css';
 const FakePieChart = ({ cryptoData }) => {
   const chartRef = useRef(null);
   const [hasMounted, setHasMounted] = useState(false);
