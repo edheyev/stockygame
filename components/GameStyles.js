@@ -50,6 +50,7 @@ export const PixelButton = styled.button`
 
 // Pixelated text for messages
 export const PixelText = styled.p`
+  margin-left: 40px;
   font-size: 1.2rem;
   color: #32cd32;
   margin-top: 10px;

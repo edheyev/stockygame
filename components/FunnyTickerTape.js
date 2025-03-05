@@ -30,62 +30,19 @@ const funnyStocks = [
   "HIGH 5s: -6%",
 ];
 
-const crashing1 = [
-  "Ooooh something is happening...",
-  "Buy N Large: -13%",
-  "Vinnie Jones Ltd: -7%",
-  "Swiss Things: -1%",
-  "FART: -45%",
-  "BEANS: -10%",
-  "Crashing???",
-];
-
-const crashing2 = [
-  "Oh dear...",
-  "CRASH IMMINENT!",
-  "Crashing???",
-];
-
-const crashing3 = [
-  "fffffffff",
-  "CRASH",
-  "CRASH",
-  "CRASH",
-  "CRASH",
-  "CRASH",
-  "CRASH",
-  "Stay away from windows",
-  "Sell your kids",
-  "Pawn the Porn",
-  "No more food",
-  "For sale: Hot-tub 'like-new' contact Clive @ bigclive@yahoomail.co.ck - will accept bread"
-];
 
 // Determine ticker category based on crashProgress thresholds
 const getTickerCategory = (crashProgress) => {
-  if (crashProgress > 0.8) {
-    return "crashing3";
-  } else if (crashProgress > 0.4) {
-    return "crashing2";
-  } else if (crashProgress > 0.1) {
-    return "crashing1";
-  } else {
+  
     return "funny";
-  }
+  
 };
 
 // Generate ticker items based on category
 const generateTickerItems = (category) => {
-  switch (category) {
-    case "crashing3":
-      return shuffleArray(crashing3);
-    case "crashing2":
-      return shuffleArray(crashing2);
-    case "crashing1":
-      return shuffleArray(crashing1);
-    default:
+
       return shuffleArray(funnyStocks);
-  }
+  
 };
 
 // Shuffle function (Fisher-Yates)
@@ -113,7 +70,7 @@ const FunnyTickerTape = ({ crashProgress = 0 }) => {
       setTickerItems([...items, ...items]); // Duplicate for seamless scrolling
       hasMountedRef.current = true;
     }
-  }, [crashProgress]);
+  }, [1000]);
 
   // Only render after initial mount
   if (!hasMountedRef.current) return null;
@@ -137,7 +94,7 @@ const FunnyTickerTape = ({ crashProgress = 0 }) => {
         className="marquee teletext-font"
         style={{
           display: "flex",
-          animation: "ticker 100s linear infinite",
+          animation: "ticker 400s linear infinite",
         }}
       >
         {tickerItems.map((item, index) => (
