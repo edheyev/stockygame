@@ -5,7 +5,7 @@ import '../app/globals.css';
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import Link from 'next/link';
-// import { PixelButton } from "../app/GameStyles"; // import your styled PixelButton
+import { PixelButton } from "../components/GameStyles"; // import your styled PixelButton
 
 // Dynamically import components
 const AnimatedLineChart = dynamic(
@@ -106,8 +106,8 @@ const Dashboard = () => {
             発金 StockMatic <i style={{ fontFamily: "gothic" }}>pro</i>
           </h1>
           <Link href="/dashboard2" passHref>
-            <button className="liquidity-button pixel-button"
-            >CLICK HERE TO PLAY THE MARKETS</button>
+            <PixelButton className="liquidity-button pixel-button"
+            >CLICK HERE TO PLAY THE MARKETS</PixelButton>
           </Link>
         </div>
 
