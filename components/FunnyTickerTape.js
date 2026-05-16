@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import '../app/vaporwave.css';
 import '../app/globals.css';
 
@@ -118,4 +118,4 @@ const FunnyTickerTape = ({ crashProgress = 0 }) => {
   );
 };
 
-export default FunnyTickerTape;
+export default memo(FunnyTickerTape);

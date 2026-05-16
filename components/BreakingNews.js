@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import '../app/vaporwave.css';
 import '../app/globals.css';
 const BreakingNews = () => {
@@ -89,4 +89,4 @@ const generateFunnyHeadline = () => {
   return headlines[Math.floor(Math.random() * headlines.length)];
 };
 
-export default BreakingNews;
+export default memo(BreakingNews);

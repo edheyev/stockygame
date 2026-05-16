@@ -4,8 +4,8 @@ import '../app/vaporwave.css';
 import '../app/globals.css';
 const AnimatedLineChart = ({ cryptoData }) => {
   const chartRef = useRef(null);
+  const historicalDataRef = useRef([]);
   const [hasMounted, setHasMounted] = useState(false);
-  const [historicalData, setHistoricalData] = useState([]);
 
   useEffect(() => {
     setHasMounted(true);
@@ -13,21 +13,16 @@ const AnimatedLineChart = ({ cryptoData }) => {
 
   useEffect(() => {
     if (hasMounted) {
-      // Add a new data point based on current cryptoData
-      setHistoricalData((prevData) => {
-        const newDataPoint = {
-          time: new Date(),
-          values: cryptoData.map((crypto) => ({
-            name: crypto.name,
-            value: parseFloat(crypto.value),
-          })),
-        };
-        // Keep only the last 10 data points
-        const maxDataPoints = 20;
-        const newData = [...prevData, newDataPoint].slice(-maxDataPoints);
-        drawChart(newData);
-        return newData;
-      });
+      const newDataPoint = {
+        time: new Date(),
+        values: cryptoData.map((crypto) => ({
+          name: crypto.name,
+          value: parseFloat(crypto.value),
+        })),
+      };
+      const maxDataPoints = 20;
+      historicalDataRef.current = [...historicalDataRef.current, newDataPoint].slice(-maxDataPoints);
+      drawChart(historicalDataRef.current);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cryptoData]);

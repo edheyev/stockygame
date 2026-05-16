@@ -1,41 +1,36 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import '../app/vaporwave.css';
 import '../app/globals.css';
+
+const initialStocks = generateFunnyStocks();
+
 const FlashingStocksTable = () => {
-  const [allStocks, setAllStocks] = useState(generateFunnyStocks());
-  const [displayedStocks, setDisplayedStocks] = useState([]);
+  const allStocksRef = useRef(initialStocks);
+  const [displayedStocks, setDisplayedStocks] = useState(() => selectRandomStocks(initialStocks, 4));
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
     setHasMounted(true);
-    // Initially select 10 stocks to display
-    setDisplayedStocks(selectRandomStocks(allStocks, 4));
 
     const interval = setInterval(() => {
-      // Update prices and recommendations for all stocks
-      setAllStocks((prevStocks) =>
-        prevStocks.map((stock) => {
-          const change = (Math.random() * 20 - 10).toFixed(2); // Random change between -10 and +10
-          const price = (parseFloat(stock.price) + parseFloat(change)).toFixed(
-            2
-          );
-          const recommendation = generateRecommendation();
-          return {
-            ...stock,
-            price,
-            change,
-            isFlashing: Math.abs(change) > 5, // Flash if change is significant
-            recommendation,
-          };
-        })
-      );
+      allStocksRef.current = allStocksRef.current.map((stock) => {
+        const change = (Math.random() * 20 - 10).toFixed(2); // Random change between -10 and +10
+        const price = (parseFloat(stock.price) + parseFloat(change)).toFixed(2);
+        const recommendation = generateRecommendation();
+        return {
+          ...stock,
+          price,
+          change,
+          isFlashing: Math.abs(change) > 5, // Flash if change is significant
+          recommendation,
+        };
+      });
 
-      // Randomly select stocks to display
-      setDisplayedStocks(selectRandomStocks(allStocks, 5));
+      setDisplayedStocks(selectRandomStocks(allStocksRef.current, 5));
     }, 3000); // Update every 3 seconds
 
     return () => clearInterval(interval);
-  }, [allStocks]);
+  }, []);
 
   if (!hasMounted) {
     return null;
@@ -92,7 +87,7 @@ const FlashingStocksTable = () => {
   );
 };
 
-const generateFunnyStocks = () => {
+function generateFunnyStocks() {
   const stockNames = [
     "FAT Corp",
     "Buy N Large",
@@ -127,7 +122,7 @@ const generateFunnyStocks = () => {
     change: "0.00",
     recommendation: generateRecommendation(),
   }));
-};
+}
 
 const selectRandomStocks = (stocks, count) => {
   // Shuffle the array and select the first 'count' stocks
@@ -135,7 +130,7 @@ const selectRandomStocks = (stocks, count) => {
   return shuffled.slice(0, count);
 };
 
-const generateRecommendation = () => {
+function generateRecommendation() {
   const recommendations = ["BUY!!!", "SELL!!", "HOLD", "MEGABUY", "MEGASELL"];
   // Weighted random selection to make "MEGABUY" and "MEGASELL" less frequent
   const weights = [0.4, 0.4, 0.15, 0.025, 0.025];
@@ -149,6 +144,6 @@ const generateRecommendation = () => {
     }
   }
   return recommendations[recommendations.length - 1];
-};
+}
 
-export default FlashingStocksTable;
+export default memo(FlashingStocksTable);

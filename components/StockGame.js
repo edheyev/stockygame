@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import {
   GameContainer,
@@ -36,6 +36,9 @@ const GameWindow = () => {
   // State for the player’s submitted tip (if applicable)
   const [playerTip, setPlayerTip] = useState("");
   const stockHoldingsRef = useRef(stockHoldings);
+  const handleBuyRef = useRef(() => {});
+  const handleSellRef = useRef(() => {});
+  const svgRef = useRef(null);
   // Prevent duplicate leaderboard updates
   const scoreSubmittedRef = useRef(false);
 
@@ -74,12 +77,23 @@ const GameWindow = () => {
     setNetWorth(liquidAssets + stockHoldings * currentStockPrice);
   }, [liquidAssets, stockHoldings, currentStockPrice]);
 
+  const updateStockPrice = useCallback(() => {
+    setCurrentStockPrice((prevPrice) => {
+      const nextPrice = Math.max(
+        10,
+        parseFloat((prevPrice + (Math.random() - 0.5) * 10).toFixed(2))
+      );
+      setStockHistory((prevHistory) => [...prevHistory.slice(-20), nextPrice]);
+      return nextPrice;
+    });
+  }, []);
+
   // Update stock price every second (only during gameplay)
   useEffect(() => {
     if (screen !== "game") return;
     const interval = setInterval(updateStockPrice, 1000);
     return () => clearInterval(interval);
-  }, [screen, currentStockPrice, stockHistory]);
+  }, [screen, updateStockPrice]);
 
   // Update game timer only during "game" mode
   useEffect(() => {
@@ -120,18 +134,6 @@ const GameWindow = () => {
   };
 
   // Randomly generate a new stock price (always ≥ £10)
-  const generateRandomStockPrice = () => {
-    const newPrice = currentStockPrice + (Math.random() - 0.5) * 10;
-    return Math.max(10, parseFloat(newPrice.toFixed(2)));
-  };
-
-  // Update stock price and record history (keeping the last 20 values)
-  const updateStockPrice = () => {
-    const newPrice = generateRandomStockPrice();
-    setCurrentStockPrice(newPrice);
-    setStockHistory((prev) => [...prev.slice(-20), newPrice]);
-  };
-
   // Buy stock only if enough liquid assets
   const handleBuy = () => {
     if (liquidAssets >= currentStockPrice) {
@@ -148,6 +150,8 @@ const GameWindow = () => {
       setLiquidAssets((prev) => prev + currentStockPrice);
     }
   };
+  handleBuyRef.current = handleBuy;
+  handleSellRef.current = handleSell;
 
   // Voice recognition for “buy” or “sell” commands
   useEffect(() => {
@@ -164,9 +168,9 @@ const GameWindow = () => {
         const lastResultIndex = event.results.length - 1;
         const command = event.results[lastResultIndex][0].transcript.trim().toLowerCase();
         if (command.includes("buy") || command.includes("bye")) {
-          handleBuy();
+          handleBuyRef.current();
         } else if (command.includes("sell") || command.includes("cell")) {
-          handleSell();
+          handleSellRef.current();
         }
       };
 
@@ -223,7 +227,7 @@ const GameWindow = () => {
 
   // Render the stock price graph using D3 in a 400x400 container
   useEffect(() => {
-    const svg = d3.select("#stockGraph");
+    const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove();
     const width = 400;
     const height = 400;
@@ -506,6 +510,7 @@ const GameWindow = () => {
           <GraphContainer>
             <svg
               id="stockGraph"
+              ref={svgRef}
               width="400"
               height="400"
               viewBox="0 0 400 400"
