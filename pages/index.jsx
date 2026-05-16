@@ -114,8 +114,48 @@ const Dashboard = () => {
           >
             発金 StockMatic <i style={{ fontFamily: "gothic" }}>pro</i>
           </h1>
+          <div
+            aria-hidden="true"
+            className="teletext-font"
+            style={{
+              fontSize: "clamp(2.8rem, 6vw, 5.8rem)",
+              lineHeight: 0.9,
+              color: "#fffb00",
+              background: "#120018",
+              border: "4px solid #00f6ff",
+              padding: "0.02em 0.16em 0.08em",
+              textShadow:
+                "0 0 10px rgba(255, 251, 0, 0.95), 0 0 24px rgba(255, 0, 255, 0.9), 3px 3px 0 #ff00ff",
+              boxShadow:
+                "0 0 0 3px #ff00ff, 0 0 18px rgba(0, 246, 255, 0.8), 5px 5px 0 #001aff",
+              animation: "play-markets-arrow 0.55s steps(2, end) infinite",
+              transform: "translateX(0)",
+              flexShrink: 0,
+              whiteSpace: "nowrap",
+            }}
+          >
+            ==&gt;&gt;
+          </div>
           <Link href="/dashboard2" passHref>
-            <PixelButton className="liquidity-button pixel-button" style={{ margin: 0, flexShrink: 0 }}>
+            <PixelButton
+              className="liquidity-button pixel-button gothic-font"
+              style={{
+                margin: 0,
+                flexShrink: 0,
+                background:
+                  "linear-gradient(135deg, #ffea00 0%, #ff5fd2 38%, #00f6ff 100%)",
+                color: "#1a0033",
+                border: "4px solid #ffffff",
+                boxShadow:
+                  "0 0 0 3px #ff00ff, 0 0 18px rgba(255, 0, 255, 0.8), 6px 6px 0 #00d9ff",
+                textShadow: "1px 1px 0 #fff799",
+                transform: "skew(-6deg)",
+                padding: "clamp(10px, 1.6vh, 16px) clamp(14px, 1.6vw, 22px)",
+                fontSize: "clamp(0.72rem, 1.1vw, 1.05rem)",
+                letterSpacing: "0.08em",
+                animation: "play-markets-pulse 1.2s steps(2, end) infinite",
+              }}
+            >
               CLICK HERE TO PLAY THE MARKETS
             </PixelButton>
           </Link>
@@ -214,6 +254,32 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="grain-overlay"></div>
+      <style jsx>{`
+        @keyframes play-markets-pulse {
+          0% {
+            filter: saturate(1) brightness(1);
+          }
+          50% {
+            filter: saturate(1.35) brightness(1.12);
+          }
+          100% {
+            filter: saturate(1) brightness(1);
+          }
+        }
+
+        @keyframes play-markets-arrow {
+          0% {
+            opacity: 0.25;
+            filter: brightness(0.9) saturate(0.9);
+            transform: translateX(-10px) scale(0.94);
+          }
+          100% {
+            opacity: 1;
+            filter: brightness(1.25) saturate(1.3);
+            transform: translateX(2px) scale(1.1);
+          }
+        }
+      `}</style>
     </div>
   );
 };
