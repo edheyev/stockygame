@@ -13,8 +13,10 @@ import {
 } from "./GameStyles";
 import CynicalTickerTape from "./CynicalTickerTape";
 
-const { webkitSpeechRecognition } = window;
-const SpeechRecognition = webkitSpeechRecognition || window.SpeechRecognition;
+const SpeechRecognition =
+  typeof window !== "undefined"
+    ? window.webkitSpeechRecognition || window.SpeechRecognition
+    : null;
 
 const GameWindow = () => {
   // Main game state variables
@@ -168,7 +170,7 @@ const GameWindow = () => {
         }
       };
 
-      recognition.onerror = (event) => {
+      recognition.onerror = () => {
       };
 
       return () => {
@@ -376,7 +378,7 @@ const GameWindow = () => {
             </PixelText>
             <input
               type="text"
-              placeholder="Your cynical tip here..."
+              placeholder="..."
               value={playerTip}
               onChange={(e) => setPlayerTip(e.target.value)}
               style={{
@@ -413,8 +415,8 @@ const GameWindow = () => {
             </PixelButton>
           </div>
         )}
-        <PixelButton onClick={() => window.location.reload()}>Play Again</PixelButton>
-      </GameContainer>
+    <PixelButton onClick={() => window.location.href = '/dashboard2'}>Play Again</PixelButton>
+    </GameContainer>
     );
   }
 
@@ -423,9 +425,30 @@ const GameWindow = () => {
     <GameContainer>
       {renderBackButton()}
       <Title>BUY LO SELL HI</Title>
-      <div style={{ display: "flex", width: "100%", justifyContent: "space-between" }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "nowrap",
+          width: "100%",
+          maxWidth: "1500px",
+          justifyContent: "center",
+          alignItems: "stretch",
+          gap: "clamp(10px, 1.2vw, 16px)",
+          flex: 1,
+          minHeight: 0,
+          overflow: "hidden",
+          padding: "2px",
+          boxSizing: "border-box",
+        }}
+      >
         {/* Left Side: Liquidity Buttons */}
-        <SidePanel>
+        <SidePanel
+          style={{
+            flex: "0 1 26%",
+            minWidth: 0,
+            justifyContent: "space-between",
+          }}
+        >
           <LiquidityButton
             onClick={() => increaseLiquidity(100, "netflix")}
             disabled={disabledButtons.netflix}
@@ -438,7 +461,7 @@ const GameWindow = () => {
             disabled={disabledButtons.kidsFund}
             style={disabledButtons.kidsFund ? { backgroundColor: "red" } : {}}
           >
-            Raid Kids' College Fund (£500)
+            Raid Kids&apos; College Fund (£500)
           </LiquidityButton>
           <LiquidityButton
             onClick={() => increaseLiquidity(300, "remortgage")}
@@ -452,35 +475,66 @@ const GameWindow = () => {
             disabled={disabledButtons.pawnJewelry}
             style={disabledButtons.pawnJewelry ? { backgroundColor: "red" } : {}}
           >
-            Pawn Sally's Jewelry (£200)
+            Pawn Sally&apos;s Jewelry (£200)
           </LiquidityButton>
           <LiquidityButton
             onClick={() => increaseLiquidity(50, "sellAntiques")}
             disabled={disabledButtons.sellAntiques}
             style={disabledButtons.sellAntiques ? { backgroundColor: "red" } : {}}
           >
-            Sell Grandma's Antiques (£50)
+            Sell Grandma&apos;s Antiques (£50)
           </LiquidityButton>
         </SidePanel>
 
         {/* Center: Stock Graph and Buy/Sell Buttons */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            flex: "1 1 48%",
+            minWidth: 0,
+            minHeight: 0,
+            padding: "clamp(8px, 1vh, 12px)",
+            border: "2px solid limegreen",
+            backgroundColor: "#1a1a1a",
+            boxSizing: "border-box",
+            borderRadius: "10px",
+            overflow: "hidden",
+          }}
+        >
           <GraphContainer>
-            {/* Updated SVG: 400x400 (2x taller than before) */}
-            <svg id="stockGraph" width="400" height="400"></svg>
+            <svg
+              id="stockGraph"
+              width="400"
+              height="400"
+              viewBox="0 0 400 400"
+              preserveAspectRatio="none"
+              style={{ width: "100%", height: "100%", display: "block" }}
+            ></svg>
           </GraphContainer>
-          <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              gap: "8px",
+              marginTop: "auto",
+              paddingTop: "12px",
+              width: "100%",
+            }}
+          >
             <PixelButton
               onClick={handleBuy}
               disabled={liquidAssets < currentStockPrice}
-              style={liquidAssets < currentStockPrice ? { backgroundColor: "red" } : {}}
+              style={liquidAssets < currentStockPrice ? { backgroundColor: "red", margin: 0 } : { margin: 0 }}
             >
               Buy
             </PixelButton>
             <PixelButton
               onClick={handleSell}
               disabled={stockHoldings === 0}
-              style={stockHoldings === 0 ? { backgroundColor: "red" } : {}}
+              style={stockHoldings === 0 ? { backgroundColor: "red", margin: 0 } : { margin: 0 }}
             >
               Sell
             </PixelButton>
@@ -488,7 +542,13 @@ const GameWindow = () => {
         </div>
 
         {/* Right Side: Game Stats */}
-        <SidePanel>
+        <SidePanel
+          style={{
+            flex: "0 1 26%",
+            minWidth: 0,
+            justifyContent: "space-between",
+          }}
+        >
           <StatBox>
             <PixelText>Stock Price: £{currentStockPrice.toFixed(2)}</PixelText>
             <PixelText>Liquid Assets: £{liquidAssets.toFixed(2)}</PixelText>

@@ -23,7 +23,8 @@ const BreakingNews = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "20px",
+        padding: "12px",
+        overflow: "hidden",
       }}
     >
       <h1
@@ -32,10 +33,11 @@ const BreakingNews = () => {
           style={{
             position: "relative",
             zIndex: 1,
-            fontSize: "1.75em",
+            fontSize: "clamp(1rem, 2.4vh, 1.65rem)",
+            lineHeight: 1.15,
             textAlign: "center",
             margin: 0,
-            padding: "20px",
+            padding: "12px",
             backgroundColor: "rgba(0, 0, 0, 0.5)",
             borderRadius: "5px",
         }}

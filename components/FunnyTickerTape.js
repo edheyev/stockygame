@@ -33,18 +33,10 @@ const funnyStocks = [
 
 
 // Determine ticker category based on crashProgress thresholds
-const getTickerCategory = (crashProgress) => {
-  
-    return "funny";
-  
-};
+const getTickerCategory = () => "funny";
 
 // Generate ticker items based on category
-const generateTickerItems = (category) => {
-
-      return shuffleArray(funnyStocks);
-  
-};
+const generateTickerItems = () => shuffleArray(funnyStocks);
 
 // Shuffle function (Fisher-Yates)
 const shuffleArray = (array) => {
@@ -60,10 +52,10 @@ const FunnyTickerTape = ({ crashProgress = 0 }) => {
   const [tickerItems, setTickerItems] = useState([]);
   const hasMountedRef = useRef(false);
   // Store the current category to update only on change
-  const currentCategoryRef = useRef(getTickerCategory(crashProgress));
+  const currentCategoryRef = useRef(getTickerCategory());
 
   useEffect(() => {
-    const newCategory = getTickerCategory(crashProgress);
+    const newCategory = getTickerCategory();
     // Only update if category has changed
     if (newCategory !== currentCategoryRef.current || !hasMountedRef.current) {
       currentCategoryRef.current = newCategory;
@@ -71,7 +63,7 @@ const FunnyTickerTape = ({ crashProgress = 0 }) => {
       setTickerItems([...items, ...items]); // Duplicate for seamless scrolling
       hasMountedRef.current = true;
     }
-  }, [1000]);
+  }, []);
 
   // Only render after initial mount
   if (!hasMountedRef.current) return null;
@@ -103,7 +95,8 @@ const FunnyTickerTape = ({ crashProgress = 0 }) => {
             key={index}
             className="ticker-item"
             style={{
-              paddingTop: "10px",
+              paddingTop: "0",
+              paddingInline: "10px",
               display: "inline-block",
             }}
           >

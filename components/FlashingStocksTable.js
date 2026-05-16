@@ -42,7 +42,7 @@ const FlashingStocksTable = () => {
   }
 
   return (
-    <div style={{ width: "100%", height: "100%", overflow: "hidden" }} className="pixel-font">
+    <div style={{ width: "100%", height: "100%", overflow: "hidden", fontSize: "clamp(0.8rem, 1.5vh, 1rem)" }} className="pixel-font">
       <table className="teletext-table"
         style={{
           width: "100%",
@@ -70,10 +70,10 @@ const FlashingStocksTable = () => {
                   : "none",
               }}
             >
-              <td style={{ padding: "8px" }}>{stock.name}</td>
-              <td style={{ padding: "8px" }}>{stock.price}</td>
-              <td style={{ padding: "8px" }}>{stock.change}</td>
-              <td style={{ padding: "8px" }}>{stock.recommendation}</td>
+              <td style={{ padding: "6px" }}>{stock.name}</td>
+              <td style={{ padding: "6px" }}>{stock.price}</td>
+              <td style={{ padding: "6px" }}>{stock.change}</td>
+              <td style={{ padding: "6px" }}>{stock.recommendation}</td>
             </tr>
           ))}
         </tbody>

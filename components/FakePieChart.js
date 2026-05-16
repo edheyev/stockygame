@@ -60,7 +60,7 @@ const FakePieChart = ({ cryptoData }) => {
       .append("text")
       .attr("transform", (d) => `translate(${arc.centroid(d)})`)
       .attr("text-anchor", "middle")
-      .attr("font-size", "20px")
+      .attr("font-size", "14px")
       .attr("fill", "#fff")
       .attr("class", "vaporwave-text")
       .text((d) => d.data.name);
